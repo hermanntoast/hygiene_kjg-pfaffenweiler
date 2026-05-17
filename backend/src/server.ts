@@ -294,6 +294,8 @@ export function createApp() {
       .status(200)
       .set('Content-Type', 'application/pdf')
       .set('Content-Disposition', 'attachment; filename="hygieneschulung-zertifikat.pdf"')
+      .set('Cache-Control', 'no-store, must-revalidate')
+      .set('Pragma', 'no-cache')
       .send(rendered.pdf);
   });
 
@@ -426,6 +428,8 @@ export function createApp() {
       .status(200)
       .set('Content-Type', 'application/pdf')
       .set('Content-Disposition', 'attachment; filename="zertifikat.pdf"')
+      .set('Cache-Control', 'no-store, must-revalidate')
+      .set('Pragma', 'no-cache')
       .send(rendered.pdf);
   });
 
