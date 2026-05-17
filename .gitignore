@@ -1,0 +1,23 @@
+node_modules/
+dist/
+backend/public/
+backend/data/*.sqlite
+backend/data/*.sqlite-*
+data/*.sqlite
+data/*.sqlite-*
+.env
+.env.local
+*.log
+.DS_Store
+.vscode/
+.idea/
+coverage/
+test-results/
+playwright-report/
+
+# OMC session state (transient). Plans/notes under .omc/plans/ are kept.
+**/.omc/state/
+**/.omc/logs/
+**/.omc/research/
+**/.omc/notepad.md
+**/.omc/project-memory.json

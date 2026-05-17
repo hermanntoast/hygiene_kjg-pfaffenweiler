@@ -1,0 +1,58 @@
+services:
+  app:
+    build: .
+    image: hygieneschulung-kjg:latest
+    container_name: hygieneschulung-kjg
+    restart: unless-stopped
+    # Wir uebergeben Variablen explizit, damit '$' in bcrypt-Hashes nicht von
+    # Docker-Compose als Variablen-Substitution interpretiert wird. Die
+    # .env-Datei wird automatisch fuer ${VAR}-Substitution geladen.
+    environment:
+      PORT: "3000"
+      COOKIE_SECRET: ${COOKIE_SECRET:?Set COOKIE_SECRET in .env}
+      ADMIN_PASSWORD_HASH: ${ADMIN_PASSWORD_HASH:?Set ADMIN_PASSWORD_HASH in .env}
+      DB_PATH: /app/data/app.sqlite
+      NODE_ENV: production
+    volumes:
+      - ./data:/app/data
+    networks:
+      - frontend
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:3000/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=frontend"
+
+      # HTTP-Router: redirect zu HTTPS.
+      - "traefik.http.routers.hygieneschulung-http.rule=Host(`hygiene.kjg-pfaffenweiler.de`)"
+      - "traefik.http.routers.hygieneschulung-http.entrypoints=web"
+      - "traefik.http.routers.hygieneschulung-http.middlewares=hygieneschulung-https-redirect"
+      - "traefik.http.middlewares.hygieneschulung-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.hygieneschulung-https-redirect.redirectscheme.permanent=true"
+
+      # HTTPS-Router mit Let's Encrypt-Zertifikat.
+      - "traefik.http.routers.hygieneschulung.rule=Host(`hygiene.kjg-pfaffenweiler.de`)"
+      - "traefik.http.routers.hygieneschulung.entrypoints=websecure"
+      - "traefik.http.routers.hygieneschulung.tls=true"
+      - "traefik.http.routers.hygieneschulung.tls.certresolver=le"
+
+      # Service-Port (Express).
+      - "traefik.http.services.hygieneschulung.loadbalancer.server.port=3000"
+
+      # Sicherheits-Header (HSTS, kein iframe, etc.).
+      - "traefik.http.routers.hygieneschulung.middlewares=hygieneschulung-secheaders"
+      - "traefik.http.middlewares.hygieneschulung-secheaders.headers.stsSeconds=15552000"
+      - "traefik.http.middlewares.hygieneschulung-secheaders.headers.stsIncludeSubdomains=true"
+      - "traefik.http.middlewares.hygieneschulung-secheaders.headers.stsPreload=true"
+      - "traefik.http.middlewares.hygieneschulung-secheaders.headers.contentTypeNosniff=true"
+      - "traefik.http.middlewares.hygieneschulung-secheaders.headers.browserXssFilter=true"
+      - "traefik.http.middlewares.hygieneschulung-secheaders.headers.frameDeny=true"
+      - "traefik.http.middlewares.hygieneschulung-secheaders.headers.referrerPolicy=strict-origin-when-cross-origin"
+
+networks:
+  frontend:
+    external: true
