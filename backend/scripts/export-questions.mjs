@@ -2,8 +2,8 @@
 /**
  * Liest frontend/src/data/questions.ts, parst die Frage-Daten und schreibt
  * sie als questions.json in backend/public/. Wird im Dockerfile zur
- * Build-Zeit ausgefuehrt, damit der Server zur Laufzeit nicht die TS-Quelle
- * benoetigt.
+ * Build-Zeit ausgeführt, damit der Server zur Laufzeit nicht die TS-Quelle
+ * benötigt.
  */
 
 import fs from 'node:fs';

@@ -1,6 +1,6 @@
 /**
- * DSGVO-Cron: Loescht Attempts und Quiz-Sessions, die ueber die
- * Aufbewahrungsfrist hinaus sind (36 Monate fuer Attempts, 1 Tag fuer Sessions).
+ * DSGVO-Cron: Löscht Attempts und Quiz-Sessions, die über die
+ * Aufbewahrungsfrist hinaus sind (36 Monate für Attempts, 1 Tag für Sessions).
  */
 
 import cron from 'node-cron';
@@ -31,7 +31,7 @@ export function runRetentionDeletion(): {
 }
 
 export function scheduleRetentionCron(): void {
-  // Jeden Tag um 03:17 Uhr (zufaellige Off-Peak-Zeit).
+  // Jeden Tag um 03:17 Uhr (zufällige Off-Peak-Zeit).
   cron.schedule('17 3 * * *', () => {
     const r = runRetentionDeletion();
     console.log(

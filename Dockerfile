@@ -1,6 +1,6 @@
-# Multi-Stage Build fuer Hygieneschulung KjG.
+# Multi-Stage Build für Hygieneschulung KjG.
 # Stage 1: Frontend mit Vite bauen.
-# Stage 2: Backend-Abhaengigkeiten + Sources + Frontend-Statics zusammenfuehren.
+# Stage 2: Backend-Abhängigkeiten + Sources + Frontend-Statics zusammenführen.
 # Stage 3: Minimales Runtime-Image.
 
 # ---------- Stage 1: Frontend-Build ----------

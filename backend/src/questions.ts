@@ -1,11 +1,11 @@
 /**
  * Server-seitige Spiegelung der Fragenpool-Daten.
  *
- * Wir koennten via tsconfig-Pfad das Frontend-Modul re-exportieren, aber
+ * Wir könnten via tsconfig-Pfad das Frontend-Modul re-exportieren, aber
  * Backend und Frontend werden unabhaengig gebuildet (zwei tsconfigs / npm-Workspaces).
  * Eine schmale Spiegelung ist hier robuster und macht das Datenmodell explizit.
  *
- * SYNCHRONIZATION: Bei jeder Aenderung an frontend/src/data/questions.ts diese
+ * SYNCHRONIZATION: Bei jeder Änderung an frontend/src/data/questions.ts diese
  * Datei mit dem gleichen Inhalt aktualisieren. Tests in backend/src/questions.test.ts
  * (siehe US-009) sichern dies ab.
  */

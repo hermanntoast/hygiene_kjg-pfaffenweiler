@@ -1,6 +1,6 @@
 /**
  * Server-seitige Quiz-Logik (Mirror von frontend/src/lib/quiz.ts ohne
- * frontend-spezifische Imports). Bei Aenderungen beide Dateien anpassen.
+ * frontend-spezifische Imports). Bei Änderungen beide Dateien anpassen.
  */
 
 import type { Question } from './questions.ts';

@@ -31,10 +31,10 @@ describe('constants', () => {
     }
   });
 
-  it('pool covers all 8 sections', () => {
+  it('pool covers all 7 sections', () => {
     const sections = new Set(questions.map((q) => q.sectionId));
-    expect(sections.size).toBe(8);
-    for (let s = 1; s <= 8; s++) {
+    expect(sections.size).toBe(7);
+    for (let s = 1; s <= 7; s++) {
       expect(sections.has(s)).toBe(true);
     }
   });
@@ -46,10 +46,10 @@ describe('pickStratified', () => {
     expect(picked.length).toBe(DRAW_COUNT);
   });
 
-  it('covers all 8 sections (≥1 question per section)', () => {
+  it('covers all 7 sections (≥1 question per section)', () => {
     const picked = pickStratified(questions, DRAW_COUNT, seededRng(42));
     const sections = new Set(picked.map((q) => q.sectionId));
-    expect(sections.size).toBe(8);
+    expect(sections.size).toBe(7);
   });
 
   it('produces no duplicates', () => {
@@ -80,7 +80,7 @@ describe('pickStratified', () => {
       const picked = pickStratified(questions, DRAW_COUNT, seededRng(seed));
       const sections = new Set(picked.map((q) => q.sectionId));
       const ids = picked.map((q) => q.id);
-      expect(sections.size, `seed ${seed} section coverage`).toBe(8);
+      expect(sections.size, `seed ${seed} section coverage`).toBe(7);
       expect(new Set(ids).size, `seed ${seed} dup-check`).toBe(ids.length);
       expect(picked.length, `seed ${seed} length`).toBe(DRAW_COUNT);
     }

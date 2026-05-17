@@ -1,8 +1,8 @@
 /**
  * E2E Negative Paths: Token-Replay, Session-Expiry, Cooldown, Verify-Hash.
  *
- * Diese Pfade lassen sich rein ueber die API testen; wir nutzen Playwright's
- * Request-Context, damit alles ueber denselben Server-Lifecycle laeuft.
+ * Diese Pfade lassen sich rein über die API testen; wir nutzen Playwright's
+ * Request-Context, damit alles über denselben Server-Lifecycle läuft.
  */
 
 import { test, expect, request as pwRequest } from '@playwright/test';
@@ -44,8 +44,8 @@ test('Cooldown: zweite Quiz-Start in <60s -> 429', async () => {
 
 test('Verify-Hash: zeigt nur Initialen + Datum, keinen vollen Namen', async () => {
   const api = await newApi();
-  // Wir koennen den Hash der Happy-Path-Loesung nicht ohne Insiderwissen
-  // bestaetigen — daher pruefen wir nur das Format-Verhalten bei einem
+  // Wir können den Hash der Happy-Path-Lösung nicht ohne Insiderwissen
+  // bestaetigen — daher prüfen wir nur das Format-Verhalten bei einem
   // gut geformten, aber unbekannten Hash (404) und bei Murks (400).
   const r404 = await api.get('/api/verify/' + 'a'.repeat(64));
   expect(r404.status()).toBe(404);

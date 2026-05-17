@@ -27,16 +27,16 @@ test('Happy path: lesen, Quiz starten, alles richtig, Zertifikat, Admin sieht Ei
   await page.getByLabel('Nachname *').fill('Playwright');
   await page.getByRole('button', { name: 'Quiz starten' }).click();
 
-  // 4. Antworten ueber die API gegenpruefen, damit wir alle korrekt klicken
-  //    koennen. Das macht den Test deterministisch unabhaengig von der
-  //    zufaelligen Frage-Ziehung.
+  // 4. Antworten über die API gegenprüfen, damit wir alle korrekt klicken
+  //    können. Das macht den Test deterministisch unabhängig von der
+  //    zufälligen Frage-Ziehung.
   await page.waitForURL(/\/quiz$/);
 
   for (let i = 0; i < 10; i++) {
     // Frage-Text scrapen, korrekt-Index aus dem Backend bekommen wir nicht —
     // stattdessen probieren wir die erste Option, navigieren weiter, und
-    // korrigieren am Ende nur den Score. Fuer den E2E-Smoke reicht uns,
-    // dass das UI durchlaeuft.
+    // korrigieren am Ende nur den Score. Für den E2E-Smoke reicht uns,
+    // dass das UI durchläuft.
     const optionButton = page
       .getByRole('button', { name: /^A\)/ })
       .first();
@@ -47,7 +47,7 @@ test('Happy path: lesen, Quiz starten, alles richtig, Zertifikat, Admin sieht Ei
 
   // Result-Seite
   await page.waitForURL(/\/quiz\/result\//);
-  // Entweder bestanden oder nicht — wir pruefen nur, dass die UI lebt
+  // Entweder bestanden oder nicht — wir prüfen nur, dass die UI lebt
   await expect(page.getByText(/Bestanden|Nicht bestanden/)).toBeVisible();
 });
 

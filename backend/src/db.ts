@@ -1,5 +1,5 @@
 /**
- * SQLite-Schema fuer die KjG-Hygieneschulung.
+ * SQLite-Schema für die KjG-Hygieneschulung.
  *
  * Schema gem. Plan-Sektion 4 (Datenmodell). Synchrone API von better-sqlite3
  * ist hier ideal: kein Connection-Pool, kein async-Overhead, einfacheres Logging.

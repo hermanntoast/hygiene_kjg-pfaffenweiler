@@ -1,115 +1,118 @@
 import { useState, type FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { quizStart, ApiError } from '../lib/api';
-import { DatenschutzNotice } from '../components/DatenschutzNotice';
+import { Icon } from '../components/Icon';
 
-interface QuizIntroProps {
-  onSessionStarted: (
-    payload: Awaited<ReturnType<typeof quizStart>>,
-  ) => void;
+interface Props {
+  initial?: { firstName: string; lastName: string; email?: string };
+  onSaveName: (n: { firstName: string; lastName: string; email?: string }) => void;
 }
 
-export function QuizIntro({ onSessionStarted }: QuizIntroProps) {
+export function QuizIntro({ initial, onSaveName }: Props) {
   const navigate = useNavigate();
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [firstName, setFirstName] = useState(initial?.firstName ?? '');
+  const [lastName, setLastName] = useState(initial?.lastName ?? '');
+  const [email, setEmail] = useState(initial?.email ?? '');
+  const canStart = firstName.trim().length >= 2 && lastName.trim().length >= 2;
 
-  async function onSubmit(e: FormEvent) {
+  function onSubmit(e: FormEvent) {
     e.preventDefault();
-    setError(null);
-    if (!firstName.trim() || !lastName.trim()) {
-      setError('Bitte Vor- und Nachnamen eintragen.');
-      return;
-    }
-    setLoading(true);
-    try {
-      const payload = await quizStart({
-        firstName: firstName.trim(),
-        lastName: lastName.trim(),
-        email: email.trim() || undefined,
-      });
-      onSessionStarted(payload);
-      navigate('/quiz');
-    } catch (e) {
-      if (e instanceof ApiError && e.status === 429) {
-        const retry = (e.payload as { retryAfterSeconds?: number } | null)
-          ?.retryAfterSeconds;
-        setError(
-          retry
-            ? `Bitte ${retry} Sekunden warten, bevor du erneut starten kannst.`
-            : 'Bitte kurz warten, bevor du erneut startest.',
-        );
-      } else {
-        setError('Quiz konnte nicht gestartet werden. Bitte erneut versuchen.');
-      }
-    } finally {
-      setLoading(false);
-    }
+    if (!canStart) return;
+    onSaveName({
+      firstName: firstName.trim(),
+      lastName: lastName.trim(),
+      email: email.trim() || undefined,
+    });
+    navigate('/learn/1');
   }
 
   return (
-    <div className="space-y-5">
-      <header className="space-y-2">
-        <h1 className="text-2xl font-bold">Quiz starten</h1>
-        <p className="text-slate-600">
-          10 Fragen aus den 8 Themen. Bestanden ab <strong>8 von 10</strong>{' '}
-          richtigen Antworten (= 80 %). Bearbeitungszeit: 30 Minuten.
-        </p>
-      </header>
+    <div className="screen">
+      <div className="form-head">
+        <button
+          type="button"
+          className="iconbtn"
+          aria-label="Zurück"
+          onClick={() => navigate('/')}
+        >
+          <Icon name="ArrowLeft" size={20} />
+        </button>
+        <div className="form-step">Schritt 1 von 2</div>
+      </div>
+      <form className="form-body" onSubmit={onSubmit} noValidate>
+        <h2 className="form-title">Wie heißt du?</h2>
+        <p className="form-sub">Für dein Zertifikat am Ende.</p>
 
-      <DatenschutzNotice />
-
-      <form onSubmit={onSubmit} className="card space-y-4" noValidate>
-        <div className="space-y-1">
-          <label htmlFor="firstName" className="text-sm font-medium">
-            Vorname *
-          </label>
+        <label className="field">
+          <span className="field-label">Vorname</span>
           <input
-            id="firstName"
+            className="input"
+            type="text"
+            autoComplete="given-name"
+            placeholder="z. B. Lena"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             required
-            autoComplete="given-name"
-            className="w-full min-h-12 rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-kjg-primary"
           />
-        </div>
-        <div className="space-y-1">
-          <label htmlFor="lastName" className="text-sm font-medium">
-            Nachname *
-          </label>
+        </label>
+
+        <label className="field">
+          <span className="field-label">Nachname</span>
           <input
-            id="lastName"
+            className="input"
+            type="text"
+            autoComplete="family-name"
+            placeholder="z. B. Müller"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
             required
-            autoComplete="family-name"
-            className="w-full min-h-12 rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-kjg-primary"
           />
-        </div>
-        <div className="space-y-1">
-          <label htmlFor="email" className="text-sm font-medium">
-            E-Mail (optional)
-          </label>
+        </label>
+
+        <label className="field">
+          <span className="field-label">E-Mail (optional)</span>
           <input
-            id="email"
+            className="input"
             type="email"
+            autoComplete="email"
+            placeholder="optional"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            autoComplete="email"
-            className="w-full min-h-12 rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-kjg-primary"
           />
+        </label>
+
+        <div className="info-pill">
+          <Icon name="Lightbulb" size={18} />
+          <span>
+            Genau so erscheint dein Name auf dem Zertifikat — bitte richtig
+            schreiben.
+          </span>
         </div>
-        {error && (
-          <p className="text-sm text-kjg-accent" role="alert">
-            {error}
-          </p>
-        )}
-        <button type="submit" className="btn-primary w-full" disabled={loading}>
-          {loading ? 'Wird gestartet ...' : 'Quiz starten'}
-        </button>
+
+        <details className="info-pill" style={{ background: '#F8FAFC', borderColor: '#E2E8F0', color: '#475569' }}>
+          <summary style={{ cursor: 'pointer', fontWeight: 600 }}>
+            Datenschutz-Hinweis (DSGVO)
+          </summary>
+          <div style={{ marginTop: 8, fontSize: 13, lineHeight: 1.55 }}>
+            Wir speichern Vor- und Nachnamen, optional E-Mail, deine Antworten,
+            das Ergebnis und — bei Bestehen — das PDF-Zertifikat. Aufbewahrung:
+            36 Monate, danach automatische Löschung. Bei Bestehen wird ein
+            Verifikations-Hash erzeugt, unter dem öffentlich nur Initialen und
+            Datum abrufbar sind.
+          </div>
+        </details>
+
+        <div style={{ flex: 1 }} />
+
+        <div className="cta-wrap">
+          <button
+            type="submit"
+            className="btn btn-primary btn-block"
+            disabled={!canStart}
+          >
+            Weiter zur Schulung
+            <Icon name="ArrowRight" size={20} />
+          </button>
+        </div>
       </form>
     </div>
   );

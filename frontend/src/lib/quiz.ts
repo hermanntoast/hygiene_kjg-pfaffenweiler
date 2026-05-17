@@ -1,8 +1,8 @@
 /**
- * Quiz-Logik fuer die KjG-Hygieneschulung.
+ * Quiz-Logik für die KjG-Hygieneschulung.
  *
  * Server-seitig wird gescort: `correctIndex` darf das Frontend nicht erreichen.
- * Diese Datei wird in beiden Seiten genutzt (Frontend fuer die UI-Helfer wie
+ * Diese Datei wird in beiden Seiten genutzt (Frontend für die UI-Helfer wie
  * shuffleArray; Backend kopiert die `Question`-Typen via Import-Pfad
  * oder Code-Duplikat -- siehe Backend-Implementierung).
  */

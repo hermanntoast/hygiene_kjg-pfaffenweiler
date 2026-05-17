@@ -3,7 +3,7 @@
  *
  * Single admin (no user table). Passwort liegt nur als bcrypt-Hash in der
  * .env-Variable ADMIN_PASSWORD_HASH. Login schreibt das signierte httpOnly-
- * Cookie; Middleware prueft das Cookie auf nachfolgenden Routen.
+ * Cookie; Middleware prüft das Cookie auf nachfolgenden Routen.
  */
 
 import bcrypt from 'bcryptjs';

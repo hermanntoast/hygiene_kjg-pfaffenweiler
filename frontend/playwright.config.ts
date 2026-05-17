@@ -1,7 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 
 /**
- * Playwright-Konfiguration fuer die KjG-Hygieneschulung E2E-Tests.
+ * Playwright-Konfiguration für die KjG-Hygieneschulung E2E-Tests.
  *
  * Der webServer-Block startet das Backend (das auch das gebuildete Frontend
  * unter `/` ausliefert) auf Port 3098. Tests laufen nur in Chromium-Mobile.

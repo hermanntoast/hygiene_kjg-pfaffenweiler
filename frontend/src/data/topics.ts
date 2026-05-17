@@ -1,17 +1,22 @@
 /**
- * Themenuebersicht der KjG-Hygieneschulung.
+ * Themenübersicht der KjG-Hygieneschulung.
  *
  * Inhalte zitieren bzw. paraphrasieren den BW-Leitfaden
- * "Leitfaden fuer den Umgang mit Lebensmitteln auf Vereins- und Strassenfesten"
- * (Ministerium fuer Laendlichen Raum und Verbraucherschutz Baden-Wuerttemberg,
+ * "Leitfaden für den Umgang mit Lebensmitteln auf Vereins- und Straßenfesten"
+ * (Ministerium für Ländlichen Raum und Verbraucherschutz Baden-Württemberg,
  *  Stand Januar 2025).
  *
- * Sortiment am KjG-Stand: Burger, Pommes, Getraenke. Manuelles Spuelen am Stand.
- * Kuehlschrank + Gefrierer vorhanden.
+ * Sortiment am KjG-Stand:
+ *   - Burger (Hackfleisch-Patties tiefgefroren)
+ *   - Steak (frisches Fleisch, Kühlschrank)
+ *   - Wurst (Kühlschrank)
+ *   - Pommes (aus dem Kühlschrank)
+ *   - Getränke
+ * Manuelles Spülen am Stand. Kühlschrank + Gefrierer vorhanden.
  */
 
 export interface Topic {
-  /** Stable id 1..8, used for routing and as section reference in questions. */
+  /** Stable id 1..7, used for routing and as section reference in questions. */
   id: number;
   /** URL-friendly slug. */
   slug: string;
@@ -30,31 +35,31 @@ const personalhygiene: Topic = {
   id: 1,
   slug: 'personalhygiene',
   title: 'Personalhygiene & Handhygiene',
-  subtitle: 'Sauber kleiden, gruendlich Haende waschen, nicht rauchen.',
+  subtitle: 'Sauber kleiden, gründlich Hände waschen, nicht rauchen.',
   sources: [13],
   summary: `
 ### Wer darf am Stand mithelfen?
-Personen mit **Magen-Darm-Erkrankungen, Hauterkrankungen oder eitrigen Wunden an Haenden
-oder Armen** duerfen nicht mit Lebensmitteln arbeiten. Kleinere Schnittwunden wasserdicht
+Personen mit **Magen-Darm-Erkrankungen, Hauterkrankungen oder eitrigen Wunden an Händen
+oder Armen** dürfen nicht mit Lebensmitteln arbeiten. Kleinere Schnittwunden wasserdicht
 mit Pflaster + Einmalhandschuh abdecken.
 
 ### Kleidung
-- Saubere Arbeitskleidung, ggf. Schuerze.
+- Saubere Arbeitskleidung, ggf. Schürze.
 - **Haare zusammenbinden** oder Kopfbedeckung tragen.
-- **Kein Schmuck** an Haenden oder Armen.
+- **Kein Schmuck** an Händen oder Armen.
 
-### Haende waschen — Pflicht-Zeitpunkte
+### Hände waschen — Pflicht-Zeitpunkte
 - vor Arbeitsbeginn,
 - nach jedem Toilettengang,
-- nach Kontakt mit rohen Lebensmitteln (z. B. Hackfleisch fuer Burger),
+- nach Kontakt mit rohen Lebensmitteln (Hackfleisch-Patties, Steak, Wurst),
 - nach Husten / Niesen / Nase putzen,
-- nach Geld- oder Muell-Kontakt.
+- nach Geld- oder Müll-Kontakt.
 
-Mit Seife und fliessendem Wasser, abtrocknen mit **Einmalhandtuechern**.
+Mit Seife und fließendem Wasser, abtrocknen mit **Einmalhandtüchern**.
 
 ### Einmalhandschuhe
-Sind kein Ersatz fuer Haendewaschen. Regelmaessig wechseln, spaetestens nach Kontakt
-mit unsauberen Bereichen (Verpackung, Muell, Geld).
+Sind kein Ersatz fürs Händewaschen. Regelmäßig wechseln, spätestens nach Kontakt
+mit unsauberen Bereichen (Verpackung, Müll, Geld).
 
 ### Verbote im Lebensmittelbereich
 - **Rauchen und Dampfen sind verboten.**
@@ -67,27 +72,27 @@ const verkaufsstand: Topic = {
   id: 2,
   slug: 'verkaufsstand',
   title: 'Verkaufsstand & Ausstattung',
-  subtitle: 'Geschuetzt aufstellen, Trinkwasser sichern, Eis nur aus Trinkwasser.',
+  subtitle: 'Geschützt aufstellen, Trinkwasser sichern, Eis nur aus Trinkwasser.',
   sources: [5, 6, 10],
   summary: `
 ### Bauliche Voraussetzungen
-- Fester, sauberer Boden; **ueberdacht**, an drei Seiten geschlossen.
-- Offene Lebensmittel an der Vorderseite durch **Spuckschutz** vor Husten / Niesen / Staub schuetzen.
-- Bereich fuer offene Lebensmittel mindestens 1,5 m vom Publikumsverkehr abschirmen.
+- Fester, sauberer Boden; **überdacht**, an drei Seiten geschlossen.
+- Offene Lebensmittel an der Vorderseite durch **Spuckschutz** vor Husten / Niesen / Staub schützen.
+- Bereich für offene Lebensmittel mindestens 1,5 m vom Publikumsverkehr abschirmen.
 
 ### Handwaschgelegenheit
-- Leicht erreichbar, mit ausreichend Wasser, **Fluessigseife** und **Einmalhandtuechern**.
-- Bei Umgang mit leicht verderblichen Lebensmitteln: warmes Wasser, z. B. Gluehweinkocher mit Zapfhahn.
+- Leicht erreichbar, mit ausreichend Wasser, **Flüssigseife** und **Einmalhandtüchern**.
+- Bei Umgang mit leicht verderblichen Lebensmitteln: warmes Wasser, z. B. Glühweinkocher mit Zapfhahn.
 
 ### Trinkwasser
-- Wasser fuer Lebensmittel, Reinigung und Geschirr muss **Trinkwasserqualitaet** haben.
-- Schlaeuche und Vorratsbehaelter muessen lebensmittelgeeignet sein (z. B. **KTW-A / DVGW W270**).
-- Handelsuebliche Gartenschlaeuche sind nicht zulaessig.
-- Bei temporaerer Wasserverteilung Gesundheitsamt informieren.
+- Wasser für Lebensmittel, Reinigung und Geschirr muss **Trinkwasserqualität** haben.
+- Schläuche und Vorratsbehälter müssen lebensmittelgeeignet sein (z. B. **KTW-A / DVGW W270**).
+- Handelsübliche Gartenschläuche sind nicht zulässig.
+- Bei temporärer Wasserverteilung Gesundheitsamt informieren.
 
 ### Eis aus Trinkwasser
-Eis, das Lebensmittel oder Getraenke beruehrt, muss **aus Trinkwasser** hergestellt sein.
-Saubere Aufbewahrungs- und Portionierhilfen verwenden — **nicht mit blosser Hand**.
+Eis, das Lebensmittel oder Getränke berührt, muss **aus Trinkwasser** hergestellt sein.
+Saubere Aufbewahrungs- und Portionierhilfen verwenden — **nicht mit bloßer Hand**.
 `,
 };
 
@@ -95,35 +100,46 @@ Saubere Aufbewahrungs- und Portionierhilfen verwenden — **nicht mit blosser Ha
 const lagerung: Topic = {
   id: 3,
   slug: 'lagerung-kuehlkette',
-  title: 'Lagerung & Kuehlkette',
-  subtitle: 'Kuehlkette einhalten — Tabelle 2 kennen.',
+  title: 'Lagerung & Kühlkette',
+  subtitle: 'Kühlkette einhalten — Tabelle 2 kennen.',
   sources: [8, 9],
   summary: `
 ### Grundregeln
-- Rohe Lebensmittel **getrennt** von verzehrfertigen lagern (raeumlich oder durch
-  verschlossene Behaelter).
-- Kuehlgeraete vor Befuellen ausreichend vorkuehlen.
-- Mindesthaltbarkeitsdatum und Verbrauchsdatum pruefen.
-- Vorratsgefaesse vor Wiederbefuellen reinigen.
+- Rohe Lebensmittel **getrennt** von verzehrfertigen lagern (räumlich oder durch
+  verschlossene Behältnisse).
+- Kühlgeräte vor Befüllen ausreichend vorkühlen.
+- Mindesthaltbarkeitsdatum und Verbrauchsdatum prüfen.
+- Vorratsgefäße vor Wiederbefüllen reinigen.
 
 ### Tabelle 2 — Maximale Lagertemperaturen (DIN 10508)
 
-| Erzeugnis                                       | max. Temperatur |
-|-------------------------------------------------|-----------------|
-| Gefluegel- und Hackfleischerzeugnisse           | **4 °C**        |
-| Frischfleisch, Fleischerzeugnisse, Sahnetorten, Salate | **7 °C**  |
-| Milchprodukte                                   | **10 °C**       |
-| Tiefkuehlprodukte                               | **−18 °C**      |
+| Erzeugnis                                          | max. Temperatur |
+|----------------------------------------------------|-----------------|
+| Geflügel- und Hackfleischerzeugnisse               | **4 °C**        |
+| Frischfleisch, Fleischerzeugnisse, Sahnetorten, Salate | **7 °C**    |
+| Milchprodukte                                      | **10 °C**       |
+| Tiefkühlprodukte                                   | **−18 °C**      |
 
-### Fuer den KjG-Stand
-- **Burger-Hackfleisch** gehoert ins **kaelteste Fach** des Kuehlschranks (max. 4 °C).
-- **TK-Pommes** bleiben im Gefrierer (−18 °C), bis sie in die Fritteuse kommen.
-- Kuehlschrank nicht in die Sonne stellen; Tueren so kurz wie moeglich oeffnen.
+### Sortiment am KjG-Stand — wo gehört was hin?
 
-### Pflicht-Kuehlung
-Torten und Kuchen mit nicht durcherhitzten Fuellungen, Milch- und Milcherzeugnisse,
-Fleisch und Wurst (ausser Hartwurst), Fisch, Salate, Dressings, Sossen, belegte
-Broetchen.
+| Produkt                       | Lagerung         | max. Temperatur |
+|-------------------------------|------------------|-----------------|
+| Hackfleisch-Patties (gefroren)| **Gefrierer**    | **−18 °C**      |
+| Steak (frisches Fleisch)      | **Kühlschrank**  | **7 °C**        |
+| Wurst (Fleischerzeugnis)      | **Kühlschrank**  | **7 °C**        |
+| Pommes (gekühlt / vorgegart)  | **Kühlschrank**  | **7 °C**        |
+| Getränke gekühlt              | Kühlschrank      | nach Bedarf     |
+
+### Praxis-Tipps
+- **Gefrierer** nicht in die Sonne stellen; Tür so kurz wie möglich öffnen.
+- **Hackfleisch-Patties auftauen** nur im Kühlschrank, **nie bei Raumtemperatur**.
+- Steak und Wurst nach Anbruch zügig verarbeiten.
+- Pommes erst kurz vor dem Frittieren aus dem Kühlschrank nehmen.
+
+### Pflicht-Kühlung
+Torten und Kuchen mit nicht durcherhitzten Füllungen, Milch- und Milcherzeugnisse,
+Fleisch und Wurst (außer Hartwurst), Fisch, Salate, Dressings, Soßen, belegte
+Brötchen.
 `,
 };
 
@@ -132,30 +148,45 @@ const zubereitung: Topic = {
   id: 4,
   slug: 'zubereitung',
   title: 'Zubereitung & Kreuzkontamination',
-  subtitle: 'Burger durchgaren, Pommes bei 175 °C, Rohes und Fertiges trennen.',
+  subtitle: 'Patties durchgaren, Pommes bei 175 °C, Rohes und Fertiges trennen.',
   sources: [7, 8, 10],
   summary: `
 ### Strikte Trennung
-- Saubere und unsaubere Taetigkeiten trennen (siehe BW-Tabelle 1).
-- **Getrennte Schneidebretter und Messer** fuer rohes Fleisch / Gefluegel und fuer
-  verzehrfertige Lebensmittel.
-- Eigene Spuel- oder Auftauvorrichtung fuer rohes Fleisch, damit Auftauwasser
+- Saubere und unsaubere Tätigkeiten trennen (siehe BW-Tabelle 1).
+- **Getrennte Schneidebretter und Messer** für rohes Fleisch (Patties, Steak, Wurst-
+  Anschnitt) und für verzehrfertige Lebensmittel.
+- Eigene Spül- oder Auftauvorrichtung für rohes Fleisch, damit Auftauwasser
   nicht andere Lebensmittel kontaminiert.
 
-### Burger — Hackfleisch ist Hochrisiko
-Erzeugnisse aus **Hackfleisch** duerfen auf Vereins- und Strassenfesten nur
-abgegeben werden, wenn sie **vollstaendig durcherhitzt** sind (Kerntemperatur
-mind. 70 °C, Richtwert). Roh- und Halbgares (z. B. medium) ist nicht zulaessig.
+### Hackfleisch-Patties — Hochrisiko
+Erzeugnisse aus **Hackfleisch** dürfen auf Vereins- und Straßenfesten nur
+abgegeben werden, wenn sie **vollständig durcherhitzt** sind (Kerntemperatur
+mindestens 70 °C). Roh- und Halbgares (z. B. medium) ist nicht zulässig.
 Salmonellen- und EHEC-Risiko.
+
+> **Auftauen**: gefrorene Patties am besten direkt aus dem Gefrierer in die Pfanne /
+> auf den Grill. Wenn vorher aufgetaut wird, dann **nur im Kühlschrank** —
+> niemals bei Raumtemperatur, weil die Außentemperatur dann zu lange im kritischen
+> Bereich 8 – 60 °C liegt.
+
+### Steak und Wurst
+- **Steak**: ganzes Muskelstück — Außenflächen müssen vollständig durchgebraten
+  sein. Die Hygienesicherheit ist hier hauptsächlich eine Frage der **Oberflächen-
+  Durcherhitzung**, da Bakterien praktisch nur außen sitzen.
+- **Brüh- und Bratwurst**: durcherhitzen, bis der Saft klar austritt.
+- Nach Kontakt mit rohem Fleisch / Wurst: Schneidebrett, Messer und Hände
+  gründlich reinigen, bevor man fertige Speisen anfasst.
 
 ### Pommes — Fritteuse-Regeln
 - Fritteuse auf **maximal 175 °C** einstellen, um Acrylamidbildung zu vermeiden.
-- Frittierfett regelmaessig wechseln, wenn es dunkelt oder schaeumt.
+- Frittierfett regelmäßig wechseln, wenn es dunkelt oder schäumt.
 - Pommes goldgelb, nicht braun; keine verbrannten Reste abgeben.
+- Vor dem Frittieren: Pommes aus dem Kühlschrank nehmen, kurz abtropfen lassen,
+  vorsichtig in das heiße Fett geben (Spritzgefahr).
 
 ### Allgemein
 - Zu garende Lebensmittel **bis in den Kern** durcherhitzen.
-- Warmgehaltene Speisen durchgaengig **ueber 65 °C** halten.
+- Warmgehaltene Speisen durchgängig **über 65 °C** halten.
 - Tiere fernhalten vom Speisenbereich.
 `,
 };
@@ -169,26 +200,28 @@ const ausgabe: Topic = {
   sources: [8],
   summary: `
 ### Goldene Regel
-**Verzehrfertige Lebensmittel niemals mit blosser Hand anfassen.**
-Das gilt fuer Burger-Broetchen, Beilagen, Brot, Backwaren — alles, was nicht
-mehr erhitzt wird.
+**Verzehrfertige Lebensmittel niemals mit bloßer Hand anfassen.**
+Das gilt für Burger-Brötchen, fertige Patties auf dem Rost, Pommes nach dem
+Frittieren, aufgeschnittenes Steak, fertige Wurst — alles, was nicht mehr
+erhitzt wird.
 
 ### Was stattdessen
-- **Zangen, Loeffel, Spatel** verwenden.
-- **Einmalhandschuhe** sind moeglich, ersetzen aber das Haendewaschen nicht.
+- **Zangen, Löffel, Spatel** verwenden.
+- **Einmalhandschuhe** sind möglich, ersetzen aber das Händewaschen nicht.
 - Servietten als Schutz beim Anreichen.
 
-### Einmalhandschuhe regelmaessig wechseln
-Handschuhe werden genauso schnell verschmutzt wie blosse Haende. Wechseln
-**spaetestens** nach:
-- Kontakt mit unsauberen Bereichen (Verpackung, Muell),
+### Einmalhandschuhe regelmäßig wechseln
+Handschuhe werden genauso schnell verschmutzt wie bloße Hände. Wechseln
+**spätestens** nach:
+- Kontakt mit unsauberen Bereichen (Verpackung, Müll),
 - Geldannahme (sofern nicht durch separate Person erledigt),
 - jeder Pause.
 
 ### Hohe Sorgfalt
-- Vor jeder Ausgabe Haende waschen.
-- Saubere Arbeitsflaeche, keine schmutzigen Tuecher in Reichweite.
-- Bei Sandwiches/Burgern: Beilagen und Sossen mit Loeffel, nicht mit Fingern.
+- Vor jeder Ausgabe Hände waschen.
+- Saubere Arbeitsfläche, keine schmutzigen Tücher in Reichweite.
+- Bei Burgern: Beilagen und Soßen mit Löffel, nicht mit Fingern.
+- Pommes mit Schaufel oder Zange in die Tüte / den Teller geben.
 `,
 };
 
@@ -196,114 +229,75 @@ Handschuhe werden genauso schnell verschmutzt wie blosse Haende. Wechseln
 const getraenke: Topic = {
   id: 6,
   slug: 'getraenke',
-  title: 'Getraenke & Eis',
+  title: 'Getränke & Eis',
   subtitle: 'Saubere Becher, Zapfanlagen reinigen, Eis nie mit Hand.',
   sources: [10],
   summary: `
-### Glaeser und Mehrwegbecher
-- Saubere Behaeltnisse verwenden, beschaedigte aussortieren.
-- Mehrweg gruendlich spuelen (siehe Sektion 8: Zwei-Becken-Verfahren).
+### Gläser und Mehrwegbecher
+- Saubere Behältnisse verwenden, beschädigte aussortieren.
+- Mehrweg gründlich spülen (siehe Sektion „Reinigung": Zwei-Becken-Verfahren).
 
 ### Zapfanlagen
-- Vor der Veranstaltung gemaess Hersteller / Verleiher **reinigen, ggf. desinfizieren**.
-- Waehrend des Betriebs sauber halten, regelmaessig Tropfschalen leeren.
-- Betriebssicherheit (Pruefpflicht) liegt bei Verleiher, Hygiene-Verantwortung
+- Vor der Veranstaltung gemäß Hersteller / Verleiher **reinigen, ggf. desinfizieren**.
+- Während des Betriebs sauber halten, regelmäßig Tropfschalen leeren.
+- Betriebssicherheit (Prüfpflicht) liegt beim Verleiher, Hygiene-Verantwortung
   beim Nutzer.
 
-### Eis im Getraenk
-- Eis, das Getraenke beruehrt, muss aus **Trinkwasser** hergestellt sein.
-- **Eis niemals mit blosser Hand entnehmen** — Eisportionierer oder Loeffel.
-- Eisportionierer in sauberem Wasser aufbewahren, das **mindestens halbstuendlich
+### Eis im Getränk
+- Eis, das Getränke berührt, muss aus **Trinkwasser** hergestellt sein.
+- **Eis niemals mit bloßer Hand entnehmen** — Eisportionierer oder Löffel.
+- Eisportionierer in sauberem Wasser aufbewahren, das **mindestens halbstündlich
   gewechselt** wird.
 
-### Zitrusfruechte im Getraenk
-Wenn Zitronen / Limetten ungeschaelt ins Getraenk kommen, **unbehandelte Ware**
-verwenden, da Oberflaechenbehandlungsmittel sich nicht vollstaendig abwaschen
+### Zitrusfrüchte im Getränk
+Wenn Zitronen / Limetten ungeschält ins Getränk kommen, **unbehandelte Ware**
+verwenden, da Oberflächenbehandlungsmittel sich nicht vollständig abwaschen
 lassen.
-`,
-};
-
-/** @see BW-Leitfaden S. 11, 12 */
-const kennzeichnung: Topic = {
-  id: 7,
-  slug: 'kennzeichnung',
-  title: 'Kennzeichnung & Allergene',
-  subtitle: 'Allergene kennen — fuer Wohltaetigkeitsfeste gilt eine Ausnahme.',
-  sources: [11, 12],
-  summary: `
-### 14 kennzeichnungspflichtige Allergene
-1. Glutenhaltiges Getreide (Weizen, Dinkel, Roggen, Gerste, Hafer und Erzeugnisse)
-2. Krebstiere und Erzeugnisse
-3. Eier und Erzeugnisse
-4. Fisch und Erzeugnisse
-5. Erdnuesse und Erzeugnisse
-6. Sojabohnen und Erzeugnisse
-7. Milch und Erzeugnisse (einschliesslich Laktose)
-8. Schalenfruechte (Mandeln, Haselnuesse, Walnuesse, Pistazien, Cashew, Pekan, Paranuesse, Macadamia)
-9. Sellerie und Erzeugnisse
-10. Senf und Erzeugnisse
-11. Sesamsamen und Erzeugnisse
-12. Schwefeldioxid und Sulfite (ab 10 mg/kg)
-13. Lupinen und Erzeugnisse
-14. Weichtiere und Erzeugnisse
-
-### Wohltaetigkeitsausnahme
-Der BW-Leitfaden nennt **Dorffeste** ausdruecklich als Beispiel fuer Veranstaltungen,
-die nicht in den Anwendungsbereich der Lebensmittel­informations­verordnung (LMIV)
-fallen — Voraussetzung: **gelegentlich**, **kleiner Rahmen**, **gemeinnuetzig**.
-
-> Praxis: Eine schriftliche Allergenkennzeichnung ist beim KjG-Dorffest nicht
-> Pflicht — eine **freiwillige Kennzeichnung** als Service ist aber ausdruecklich
-> erlaubt und empfohlen. Bei Fragen die untere Lebensmittelueberwachungsbehoerde
-> einbinden.
-
-### Zusatzstoffe
-Bei vorverpackter Ware Pflicht. Bei loser Ware mit Allergenkennzeichnung kombinieren.
-
-### Preisauszeichnung
-Preise gut sichtbar, deutlich lesbar. Bei Alkohol: mindestens ein alkoholfreies
-Getraenk darf **nicht teurer** sein als das guenstigste alkoholische.
 `,
 };
 
 /** @see BW-Leitfaden S. 5, 6, 7 */
 const reinigung: Topic = {
-  id: 8,
+  id: 7,
   slug: 'reinigung-abfall',
-  title: 'Reinigung, Abfall & Schaedlinge',
-  subtitle: 'Zwei-Becken-Verfahren, geschlossener Muell, abgedeckte Speisen.',
+  title: 'Reinigung, Abfall & Schädlinge',
+  subtitle: 'Zwei-Becken-Verfahren, geschlossener Müll, abgedeckte Speisen.',
   sources: [5, 6, 7],
   summary: `
-### Geschirrspuelen am Stand — Zwei-Becken-Verfahren
-Wenn keine Spuelmaschine verfuegbar ist:
-1. **Erstes Becken:** so heisses Wasser wie moeglich + **Spuelmittel**.
-2. **Zweites Becken:** sauberes, **warmes Nachspuelwasser**.
+### Geschirrspülen am KjG-Stand — Spülmaschine + Zwei-Becken-Verfahren
+Wir haben am Stand eine **Spülmaschine** — die ist die erste Wahl, weil sie heiß
+genug spült, um Keime zuverlässig abzutöten.
 
-Wasser regelmaessig wechseln, Trockentuecher regelmaessig austauschen. Sauberes
+Falls die Spülmaschine ausfällt oder bei einzelnem Geschirr (z. B. großen
+Töpfen): **Zwei-Becken-Verfahren** anwenden.
+1. **Erstes Becken:** so heißes Wasser wie möglich + **Spülmittel**.
+2. **Zweites Becken:** sauberes, **warmes Nachspülwasser**.
+
+Wasser regelmäßig wechseln, Trockentücher regelmäßig austauschen. Sauberes
 Geschirr **getrennt** vom Schmutzgeschirr lagern. Geschirr nicht feucht stapeln
-(unghinderter Wasserabfluss). Beschaedigtes Geschirr aussortieren.
+(ungehinderter Wasserabfluss). Beschädigtes Geschirr aussortieren.
 
-> Fuer Trinkglaeser ist alternativ ein Kaltwaschverfahren mit Reinigungstabletten
-> erlaubt, sofern es gleichwertige Ergebnisse liefert und Rueckstaende sicher
+> Für Trinkgläser ist alternativ ein Kaltwaschverfahren mit Reinigungstabletten
+> erlaubt, sofern es gleichwertige Ergebnisse liefert und Rückstände sicher
 > entfernt werden.
 
 ### Abfallentsorgung
-- Muell ueber dichte, geschlossene Behaelter sammeln.
-- Lebensmittelabfaelle **rasch entfernen**, separat von Lebensmittelbereichen.
+- Müll über dichte, geschlossene Behälter sammeln.
+- Lebensmittelabfälle **rasch entfernen**, separat von Lebensmittelbereichen.
 - Speisereste **nicht** in die Biotonne — Abholung durch Entsorgungsunternehmen
-  oder gemeinsame Loesung mit anderen Anbietern.
-- Auch fuer Festbesucher reichlich Muellbehaelter in Standnaehe.
+  oder gemeinsame Lösung mit anderen Anbietern.
+- Auch für Festbesucher reichlich Müllbehälter in Standnähe.
 
-### Schaedlingspraevention
+### Schädlingsprävention
 - Lebensmittel **stets abdecken**.
-- Muellbehaelter **geschlossen** halten.
-- Stand sauber halten, Krumen und Reste sofort entfernen.
+- Müllbehälter **geschlossen** halten.
+- Stand sauber halten, Krümel und Reste sofort entfernen.
 
 ### Reinigungsrhythmus
-- Vor Beginn: Arbeitsflaechen, Geraete, Griffe wischen.
-- Waehrend des Betriebs: Zwischenreinigung von Schneidebrettern, Messern,
-  Arbeitsflaechen.
-- Nach Schluss: Gruendliche Reinigung aller Geraete und Flaechen.
+- Vor Beginn: Arbeitsflächen, Geräte, Griffe wischen.
+- Während des Betriebs: Zwischenreinigung von Schneidebrettern, Messern,
+  Arbeitsflächen.
+- Nach Schluss: Gründliche Reinigung aller Geräte und Flächen.
 `,
 };
 
@@ -314,7 +308,6 @@ export const topics: Topic[] = [
   zubereitung,
   ausgabe,
   getraenke,
-  kennzeichnung,
   reinigung,
 ];
 

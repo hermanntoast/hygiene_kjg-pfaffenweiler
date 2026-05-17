@@ -6,13 +6,14 @@ services:
     restart: unless-stopped
     # Wir uebergeben Variablen explizit, damit '$' in bcrypt-Hashes nicht von
     # Docker-Compose als Variablen-Substitution interpretiert wird. Die
-    # .env-Datei wird automatisch fuer ${VAR}-Substitution geladen.
+    # .env-Datei wird automatisch für ${VAR}-Substitution geladen.
     environment:
       PORT: "3000"
       COOKIE_SECRET: ${COOKIE_SECRET:?Set COOKIE_SECRET in .env}
       ADMIN_PASSWORD_HASH: ${ADMIN_PASSWORD_HASH:?Set ADMIN_PASSWORD_HASH in .env}
       DB_PATH: /app/data/app.sqlite
       NODE_ENV: production
+      PUBLIC_BASE_URL: ${PUBLIC_BASE_URL:-https://hygiene.kjg-pfaffenweiler.de}
     volumes:
       - ./data:/app/data
     networks:

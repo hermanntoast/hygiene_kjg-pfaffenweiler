@@ -2,12 +2,13 @@
  * Server-side certificate rendering for the KjG-Hygieneschulung.
  *
  * Rendered with pdf-lib (no native deps, no headless browser).
- * Each successful attempt yields a deterministic PDF + a sha256-hash that the
- * Verify-route can use without exposing the full name to the public.
+ * Each successful attempt yields a deterministic PDF + a sha256-hash und
+ * einen QR-Code, der auf {verifyBaseUrl}/verify/{hash} zeigt.
  */
 
 import { createHash } from 'node:crypto';
 import { PDFDocument, StandardFonts, rgb } from 'pdf-lib';
+import QRCode from 'qrcode';
 
 export interface CertificateInput {
   attemptId: number;
@@ -17,21 +18,27 @@ export interface CertificateInput {
   totalCount: number;
   /** ISO timestamp; pass a fixed value for tests to get a deterministic PDF. */
   issuedAt: string;
+  /**
+   * Basis-URL ohne Pfad (z. B. "https://hygiene.kjg-pfaffenweiler.de").
+   * Wird genutzt, um den Verify-Link `{verifyBaseUrl}/verify/{hash}`
+   * zu bilden, der als QR-Code aufs Zertifikat gedruckt wird. Leer = kein QR.
+   */
+  verifyBaseUrl?: string;
 }
 
 export interface CertificateOutput {
   pdfBytes: Uint8Array;
   hash: string;
+  verifyUrl: string;
 }
 
 const KJG_HEADER = 'KjG-Pfaffenweiler e.V. - Katholische junge Gemeinde';
 const TITLE = 'Zertifikat - Hygieneschulung';
 const SCOPE =
-  'Lebensmittelhygiene gem. BW-Leitfaden des Ministeriums fuer Laendlichen Raum und ' +
-  'Verbraucherschutz Baden-Wuerttemberg (Stand Januar 2025) / Dorffest Pfaffenweiler 2026.';
+  'Lebensmittelhygiene gem. BW-Leitfaden des Ministeriums für Ländlichen Raum und ' +
+  'Verbraucherschutz Baden-Württemberg (Stand Januar 2025) / Dorffest Pfaffenweiler 2026.';
 
 function formatGermanDate(iso: string): string {
-  // Expect ISO; render dd.mm.yyyy (UTC to keep tests deterministic across timezones).
   const d = new Date(iso);
   const dd = String(d.getUTCDate()).padStart(2, '0');
   const mm = String(d.getUTCMonth() + 1).padStart(2, '0');
@@ -55,14 +62,15 @@ export async function generateCertificate(
   input: CertificateInput,
 ): Promise<CertificateOutput> {
   const hash = computeCertificateHash(input);
-  const pdf = await PDFDocument.create();
+  const base = (input.verifyBaseUrl ?? '').replace(/\/+$/, '');
+  const verifyUrl = base ? `${base}/verify/${hash}` : `/verify/${hash}`;
 
+  const pdf = await PDFDocument.create();
   pdf.setTitle('Zertifikat - Hygieneschulung KjG-Pfaffenweiler');
   pdf.setAuthor('KjG-Pfaffenweiler e.V.');
-  pdf.setSubject(`Verifikations-Hash: ${hash}`);
+  pdf.setSubject(`Verifikations-URL: ${verifyUrl}`);
   pdf.setKeywords([hash]);
 
-  // A4 portrait in pdf-lib units (1pt = 1/72 inch).
   const page = pdf.addPage([595, 842]);
 
   const helv = await pdf.embedFont(StandardFonts.Helvetica);
@@ -73,7 +81,6 @@ export async function generateCertificate(
   const slate = rgb(0.2, 0.2, 0.25);
   const grey = rgb(0.45, 0.45, 0.5);
 
-  // Header band.
   page.drawRectangle({ x: 0, y: 792, width: 595, height: 50, color: navy });
   page.drawText(KJG_HEADER, {
     x: 40,
@@ -83,7 +90,6 @@ export async function generateCertificate(
     color: rgb(1, 1, 1),
   });
 
-  // Title.
   page.drawText(TITLE, {
     x: 40,
     y: 720,
@@ -92,8 +98,7 @@ export async function generateCertificate(
     color: navy,
   });
 
-  // Subtitle.
-  page.drawText('Hiermit wird bestaetigt, dass', {
+  page.drawText('Hiermit wird bestätigt, dass', {
     x: 40,
     y: 670,
     size: 14,
@@ -101,7 +106,6 @@ export async function generateCertificate(
     color: slate,
   });
 
-  // Name.
   const fullName = `${input.firstName.trim()} ${input.lastName.trim()}`;
   page.drawText(fullName, {
     x: 40,
@@ -111,7 +115,6 @@ export async function generateCertificate(
     color: navy,
   });
 
-  // Body.
   const bodyLines = [
     'die Online-Hygieneschulung der KjG-Pfaffenweiler erfolgreich absolviert hat.',
     '',
@@ -126,7 +129,6 @@ export async function generateCertificate(
     y -= 22;
   }
 
-  // Scope.
   page.drawText('Geltungsbereich:', {
     x: 40,
     y: 440,
@@ -134,7 +136,6 @@ export async function generateCertificate(
     font: helvBold,
     color: slate,
   });
-  // Wrap scope into ~80-char lines.
   const scopeLines = wrapText(SCOPE, 80);
   let sy = 420;
   for (const line of scopeLines) {
@@ -157,7 +158,27 @@ export async function generateCertificate(
     color: slate,
   });
 
-  // Footer with hash.
+  // QR-Code rechts unten, neben Hash-Footer.
+  const qrSize = 100;
+  const qrPng = await QRCode.toBuffer(verifyUrl, {
+    errorCorrectionLevel: 'M',
+    margin: 1,
+    width: qrSize * 4,
+    color: { dark: '#000000', light: '#FFFFFF' },
+  });
+  const qrImg = await pdf.embedPng(new Uint8Array(qrPng));
+  const qrX = 595 - 40 - qrSize;
+  const qrY = 48;
+  page.drawImage(qrImg, { x: qrX, y: qrY, width: qrSize, height: qrSize });
+  page.drawText('Hier scannen zum Verifizieren', {
+    x: qrX,
+    y: qrY - 12,
+    size: 8,
+    font: helvOblique,
+    color: grey,
+  });
+
+  // Footer mit Hash links unten.
   page.drawText('Verifikations-Hash (sha256):', {
     x: 40,
     y: 80,
@@ -166,13 +187,16 @@ export async function generateCertificate(
     color: grey,
   });
   page.drawText(hash, { x: 40, y: 64, size: 8, font: helv, color: grey });
-  page.drawText(
-    'Verifikation unter /verify/<hash> -- zeigt Initialen, Datum und Status.',
-    { x: 40, y: 48, size: 9, font: helvOblique, color: grey },
-  );
+  page.drawText(verifyUrl, {
+    x: 40,
+    y: 48,
+    size: 9,
+    font: helvOblique,
+    color: grey,
+  });
 
   const pdfBytes = await pdf.save({ useObjectStreams: false });
-  return { pdfBytes, hash };
+  return { pdfBytes, hash, verifyUrl };
 }
 
 function wrapText(text: string, maxChars: number): string[] {

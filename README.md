@@ -1,16 +1,16 @@
 # Hygieneschulung KjG-Pfaffenweiler e.V.
 
-Mobile-first React-Web-App fuer die Online-Hygieneschulung vor dem **Dorffest 2026**.
+Mobile-first React-Web-App für die Online-Hygieneschulung vor dem **Dorffest 2026**.
 Ehrenamtliche KjG-Helfer lesen 8 kurze Themenblocks (aus dem BW-Leitfaden zum Umgang
-mit Lebensmitteln auf Vereins- und Strassenfesten, Stand Jan 2025), absolvieren ein
-Quiz mit 10 zufaellig gezogenen Fragen aus einem Pool von 20, **bestehen ab 80 %
+mit Lebensmitteln auf Vereins- und Straßenfesten, Stand Jan 2025), absolvieren ein
+Quiz mit 10 zufällig gezogenen Fragen aus einem Pool von 20, **bestehen ab 80 %
 (= 8 von 10 richtigen Antworten)** und erhalten ein PDF-Zertifikat. Die KjG-
 Vorstandschaft sieht alle Ergebnisse und Zertifikate in einem Admin-Dashboard.
 
-> Sortiment am Stand: Burger, Pommes, Getraenke. Manuelles Spuelen am Stand.
-> Kuehlschrank + Gefrierer vorhanden. Inhalt und Fragenpool sind auf genau
+> Sortiment am Stand: Burger, Pommes, Getraenke. Manuelles Spülen am Stand.
+> Kühlschrank + Gefrierer vorhanden. Inhalt und Fragenpool sind auf genau
 > dieses Setup zugeschnitten (Hackfleisch durcherhitzt, Fritteuse <=175 °C,
-> Zwei-Becken-Spuelverfahren, Kuehlkette nach DIN 10508).
+> Zwei-Becken-Spülverfahren, Kühlkette nach DIN 10508).
 
 Detaillierter Plan + Architecture Decision Record liegen unter
 `.omc/plans/2026-05-17_hygieneschulung-kjg.md`.
@@ -19,7 +19,7 @@ Detaillierter Plan + Architecture Decision Record liegen unter
 
 ## Inhalt
 
-- [Ueberblick](#ueberblick)
+- [Überblick](#überblick)
 - [Setup lokal](#setup-lokal)
 - [Setup Docker](#setup-docker)
 - [Konfiguration (.env)](#konfiguration-env)
@@ -34,7 +34,7 @@ Detaillierter Plan + Architecture Decision Record liegen unter
 
 ---
 
-## Ueberblick
+## Überblick
 
 ```
 hygieneschulung-kjg/
@@ -55,14 +55,14 @@ hygieneschulung-kjg/
 
 Stack-Highlights:
 
-- **Server-side Quiz-Scoring**: Antworten + Punktzahl + PDF werden ausschliesslich
+- **Server-side Quiz-Scoring**: Antworten + Punktzahl + PDF werden ausschließlich
   serverseitig erzeugt. Das Frontend bekommt nie die richtigen Antworten.
 - **SHA-256-Verifikationshash**: Jedes Zertifikat traegt einen Hash. Die
   Verify-Route `/api/verify/:hash` zeigt nur Initialen + Datum + Status.
 - **Single-Binary-Deploy**: Express servt das gebaute Frontend auf demselben
   Port wie die API.
 - **Self-hosted, DSGVO-konform**: SQLite, kein Cloud-Drittanbieter, 36 Monate
-  Aufbewahrung mit Cron-Loeschung.
+  Aufbewahrung mit Cron-Löschung.
 
 ---
 
@@ -73,7 +73,7 @@ Voraussetzung: Node.js 20 LTS oder neuer, npm.
 ```bash
 npm install            # installiert npm-run-all im Root
 npm run install:all    # installiert frontend + backend Dependencies
-cp .env.example .env   # Werte ersetzen (siehe naechster Abschnitt)
+cp .env.example .env   # Werte ersetzen (siehe nächster Abschnitt)
 npm run dev            # Frontend (:5173) + Backend (:3000) parallel
 ```
 
@@ -97,7 +97,7 @@ ein Container-Neustart die Daten nicht verliert.
 | Variable               | Pflicht | Beschreibung |
 |------------------------|---------|--------------|
 | `PORT`                 | nein    | HTTP-Port (Default 3000). |
-| `COOKIE_SECRET`        | **ja**  | Signierschluessel fuer das Admin-Cookie. Mindestens 32 zufaellige Bytes. |
+| `COOKIE_SECRET`        | **ja**  | Signierschlüssel für das Admin-Cookie. Mindestens 32 zufällige Bytes. |
 | `ADMIN_PASSWORD_HASH`  | **ja**  | bcrypt-Hash des Admin-Passworts. Niemals Klartext einchecken. |
 | `DB_PATH`              | nein    | Pfad zur SQLite-Datei (Default `./data/app.sqlite`). |
 
@@ -113,11 +113,11 @@ eintragen.
 > **Docker-Compose-Gotcha**: bcrypt-Hashes enthalten `$`. Docker Compose
 > interpretiert `$VAR` in `.env`-Werten als Variablen-Referenz. **Jedes `$` im
 > Hash in der `.env`-Datei verdoppeln** (`$` → `$$`), wenn du Docker Compose
-> nutzt. Im lokalen Setup (`npm start`) ohne Docker ist kein Escaping noetig.
+> nutzt. Im lokalen Setup (`npm start`) ohne Docker ist kein Escaping nötig.
 >
 > Beispiel:
 > - Original: `$2a$12$abcdef.real.hash...`
-> - In `.env` fuer Compose: `$$2a$$12$$abcdef.real.hash...`
+> - In `.env` für Compose: `$$2a$$12$$abcdef.real.hash...`
 
 ### Cookie-Secret erzeugen
 
@@ -136,7 +136,7 @@ cd backend  && npm run dev        # nur backend (:3000, tsx-watch)
 ```
 
 Mobile-Layout testen: Chrome DevTools -> Device Mode "Pixel 5" oder ähnliche
-Aufloesung 375x667.
+Auflösung 375x667.
 
 ---
 
@@ -159,7 +159,7 @@ curl http://localhost:3000/api/health
 ## Deploy
 
 Empfohlen: Docker auf einem kleinen VPS oder Heim-NAS hinter **Traefik** (Reverse
-Proxy + Let's Encrypt). Das mitgelieferte `docker-compose.yml` ist bereits dafuer
+Proxy + Let's Encrypt). Das mitgelieferte `docker-compose.yml` ist bereits dafür
 konfiguriert.
 
 ```bash
@@ -197,8 +197,8 @@ Konfiguration (Labels):
   `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`, sinnvoller
   `Referrer-Policy`.
 
-DNS-Setup: A/AAAA-Record fuer `hygiene.kjg-pfaffenweiler.de` auf die
-oeffentliche IP des Traefik-Hosts. Traefik holt das LE-Zertifikat beim ersten
+DNS-Setup: A/AAAA-Record für `hygiene.kjg-pfaffenweiler.de` auf die
+öffentliche IP des Traefik-Hosts. Traefik holt das LE-Zertifikat beim ersten
 Request automatisch.
 
 Verifikation nach Deploy:
@@ -256,7 +256,7 @@ Risiko**. Empfohlener Hand-Over an Nachfolger:
    - `npm audit` ausserhalb von Saison.
    - Dependency-Bumps bei kritischen CVEs (Express, Zod, pdf-lib).
 3. **Saisonarbeit**: Vor jedem Dorffest die Fragen mit dem aktuellen BW-Leitfaden
-   abgleichen (siehe naechster Abschnitt zum Florian-Sign-off).
+   abgleichen (siehe nächster Abschnitt zum Florian-Sign-off).
 4. **Notfall**: Container neustarten `docker compose restart app`.
    Backup-Restore siehe unten.
 
@@ -278,7 +278,7 @@ sqlite3 data/app.sqlite ".backup backups/app-${DATE}.sqlite"
 find backups -type f -mtime +30 -delete
 ```
 
-Das geht **waehrend laufendem Container** sicher, weil SQLite's `.backup` einen
+Das geht **während laufendem Container** sicher, weil SQLite's `.backup` einen
 konsistenten Snapshot zieht.
 
 ### Restore-Test (mindestens 1x pro Saison)
@@ -287,11 +287,11 @@ konsistenten Snapshot zieht.
 # 1. Backup-Datei in eine Sandbox laden
 cp backups/app-2026-05-17.sqlite /tmp/restore-test.sqlite
 
-# 2. Pruefen, ob die Datei intakt ist
+# 2. Prüfen, ob die Datei intakt ist
 sqlite3 /tmp/restore-test.sqlite "PRAGMA integrity_check;"
 # Erwartet: ok
 
-# 3. Zeilenzahl pruefen
+# 3. Zeilenzahl prüfen
 sqlite3 /tmp/restore-test.sqlite "SELECT COUNT(*) FROM attempts;"
 # -> sollte aktuelle Anzahl liefern
 
@@ -299,7 +299,7 @@ sqlite3 /tmp/restore-test.sqlite "SELECT COUNT(*) FROM attempts;"
 rm /tmp/restore-test.sqlite
 ```
 
-Wenn die Datei korrupt ist, das naechstaeltere Backup probieren. Der Restore-
+Wenn die Datei korrupt ist, das nächstaeltere Backup probieren. Der Restore-
 Test sollte **mindestens einmal jaehrlich** durchgespielt werden, damit man im
 Ernstfall weiss, dass der Pfad funktioniert.
 
@@ -311,7 +311,7 @@ Die 20 Quiz-Fragen unter `frontend/src/data/questions.ts` sind aus dem BW-
 Leitfaden (Stand Januar 2025) abgeleitet. Jede Frage traegt:
 
 - `sourcePage` mit der Seitenangabe im BW-Leitfaden,
-- `explanation` mit einer Ein-Satz-Begruendung,
+- `explanation` mit einer Ein-Satz-Begründung,
 - einen `// REVIEW: Florian`-Marker im JSDoc.
 
 **Vor jeder produktiven Schaltung** muss Florian Straub (Schulungsverantwortliche
@@ -319,7 +319,7 @@ KjG) die Fragenliste gegen den BW-Leitfaden sowie den KjG-Hygieneplan
 abgleichen und freigeben. Sign-off bitte als Kommentar im Repository oder per
 E-Mail an die Vorstandschaft. Ohne Sign-off **nicht** live schalten.
 
-Aenderungen an `questions.ts` erfordern einen erneuten Sign-off.
+Änderungen an `questions.ts` erfordern einen erneuten Sign-off.
 
 ---
 
@@ -327,14 +327,14 @@ Aenderungen an `questions.ts` erfordern einen erneuten Sign-off.
 
 Erhoben werden: **Vorname, Nachname, optional E-Mail, Antworten, Score und das
 PDF-Zertifikat (bei Bestehen)**. Aufbewahrungsdauer: **36 Monate**, analog
-Belehrungspraxis nach Infektionsschutzgesetz § 43. Cron-Job loescht aeltere
+Belehrungspraxis nach Infektionsschutzgesetz § 43. Cron-Job löscht aeltere
 Datensaetze automatisch.
 
 Verifikations-Hash: Bei Bestehen wird ein SHA-256-Hash erzeugt. Unter der
-oeffentlichen Verify-Route `/api/verify/<hash>` sind **nur Initialen + Datum +
+öffentlichen Verify-Route `/api/verify/<hash>` sind **nur Initialen + Datum +
 Status** abrufbar — kein voller Name. Rate-Limit 10/min/IP.
 
-Recht auf vorzeitige Loeschung: per E-Mail an die KjG-Vorstandschaft.
+Recht auf vorzeitige Löschung: per E-Mail an die KjG-Vorstandschaft.
 
 Die App ist self-hosted und uebermittelt keine personenbezogenen Daten an
 Drittanbieter (kein Tracking, kein CDN-Drittanbieter mit Personendaten).

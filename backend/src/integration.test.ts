@@ -1,5 +1,5 @@
 /**
- * Integrations-Tests fuer die KjG-Hygieneschulung API.
+ * Integrations-Tests für die KjG-Hygieneschulung API.
  *
  * Deckt die Acceptance-Kriterien aus US-009 ab:
  * - Happy Path: Quiz starten -> 10/10 richtig -> Pass + Zertifikat + Admin sieht es

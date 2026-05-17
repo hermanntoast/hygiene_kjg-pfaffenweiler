@@ -1,13 +1,21 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { QuestionPublic } from '../data/questions';
-import { quizSubmit, ApiError, type QuizStartResponse, type QuizSubmitResponse } from '../lib/api';
-import { ProgressBar } from '../components/ProgressBar';
-import { Countdown } from '../components/Countdown';
+import {
+  quizStart,
+  quizSubmit,
+  ApiError,
+  type QuizStartResponse,
+  type QuizSubmitResponse,
+} from '../lib/api';
+import { TopBar } from '../components/TopBar';
+import { Icon } from '../components/Icon';
 
-interface QuizProps {
-  session: QuizStartResponse;
-  onSubmitted: (result: QuizSubmitResponse, questions: QuestionPublic[]) => void;
+interface Props {
+  user: { firstName: string; lastName: string; email?: string } | null;
+  session: QuizStartResponse | null;
+  onSessionStarted: (s: QuizStartResponse) => void;
+  onSubmitted: (r: QuizSubmitResponse, qs: QuestionPublic[]) => void;
   onReset: () => void;
 }
 
@@ -20,33 +28,106 @@ function shuffleIndices(n: number): number[] {
   return arr;
 }
 
-interface DisplayQuestion {
-  question: QuestionPublic;
-  optionOrder: number[]; // shuffled indices into `options`
-}
-
-export function Quiz({ session, onSubmitted, onReset }: QuizProps) {
+export function Quiz({
+  user,
+  session,
+  onSessionStarted,
+  onSubmitted,
+  onReset,
+}: Props) {
   const navigate = useNavigate();
-  const display = useMemo<DisplayQuestion[]>(
-    () =>
-      session.questions.map((q) => ({
-        question: q,
-        optionOrder: shuffleIndices(q.options.length),
-      })),
-    [session],
-  );
-
+  const [starting, setStarting] = useState(!session);
+  const [startError, setStartError] = useState<string | null>(null);
   const [idx, setIdx] = useState(0);
-  /** Answers as **original** option indices into question.options, -1 = unanswered. */
-  const [answers, setAnswers] = useState<number[]>(() =>
-    Array(session.questions.length).fill(-1),
-  );
+  const [answers, setAnswers] = useState<number[]>([]);
   const [submitting, setSubmitting] = useState(false);
-  const [expired, setExpired] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
-  const current = display[idx];
+  useEffect(() => {
+    if (session) {
+      setStarting(false);
+      setAnswers(Array(session.questions.length).fill(-1));
+      return;
+    }
+    if (!user) {
+      navigate('/start');
+      return;
+    }
+    setStarting(true);
+    quizStart(user)
+      .then((s) => {
+        onSessionStarted(s);
+        setAnswers(Array(s.questions.length).fill(-1));
+        setStarting(false);
+      })
+      .catch((e) => {
+        setStarting(false);
+        if (e instanceof ApiError && e.status === 429) {
+          const retry = (e.payload as { retryAfterSeconds?: number } | null)
+            ?.retryAfterSeconds;
+          setStartError(
+            retry
+              ? `Bitte ${retry} Sekunden warten — du hast gerade erst gestartet.`
+              : 'Bitte kurz warten, bevor du erneut startest.',
+          );
+        } else {
+          setStartError('Quiz konnte nicht gestartet werden. Bitte erneut versuchen.');
+        }
+      });
+  }, [session, user, navigate, onSessionStarted]);
+
+  const display = useMemo(() => {
+    if (!session) return [];
+    return session.questions.map((q) => ({
+      question: q,
+      optionOrder: shuffleIndices(q.options.length),
+    }));
+  }, [session]);
+
+  if (starting) {
+    return (
+      <div className="screen">
+        <div className="result-body">
+          <Icon name="RefreshCw" size={48} className="text-emerald-600 animate-spin" />
+          <p className="result-text">Quiz wird vorbereitet …</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (startError) {
+    return (
+      <div className="screen">
+        <div className="result-body">
+          <div className="result-badge badge-fail">
+            <Icon name="AlertTriangle" size={48} strokeWidth={1.75} />
+          </div>
+          <h2 className="result-title">Moment.</h2>
+          <p className="result-text">{startError}</p>
+        </div>
+        <div className="cta-wrap">
+          <button
+            className="btn btn-primary btn-block"
+            onClick={() => {
+              onReset();
+              navigate('/start');
+            }}
+          >
+            Zurück
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  if (!session) return null;
+
   const totalQs = display.length;
-  const answeredAll = answers.every((a) => a >= 0);
+  const current = display[idx];
+  const picked = answers[idx];
+  const hasPicked = picked >= 0;
+  const isLast = idx === totalQs - 1;
+  const allAnswered = answers.every((a) => a >= 0);
 
   function pick(displayedIndex: number) {
     const originalIndex = current.optionOrder[displayedIndex];
@@ -57,127 +138,128 @@ export function Quiz({ session, onSubmitted, onReset }: QuizProps) {
     });
   }
 
+  const handleBack = () => {
+    if (idx > 0) {
+      setIdx((i) => i - 1);
+    } else {
+      navigate('/learn/7');
+    }
+  };
+
   async function submit() {
+    if (!session) return;
     setSubmitting(true);
+    setSubmitError(null);
     try {
-      const result = await quizSubmit({
-        token: session.token,
-        answers,
-      });
+      const result = await quizSubmit({ token: session.token, answers });
       onSubmitted(result, session.questions);
       navigate(`/quiz/result/${result.attemptId}`);
     } catch (e) {
       if (e instanceof ApiError && e.status === 409) {
-        setExpired(true);
+        setSubmitError(
+          (e.payload as { error?: string } | null)?.error === 'session_expired'
+            ? 'Die Bearbeitungszeit ist abgelaufen. Bitte neu starten.'
+            : 'Diese Quiz-Sitzung wurde bereits eingereicht.',
+        );
       } else {
-        alert('Quiz konnte nicht abgesendet werden. Bitte erneut versuchen.');
+        setSubmitError('Konnte nicht abgesendet werden. Bitte erneut versuchen.');
       }
     } finally {
       setSubmitting(false);
     }
   }
 
-  if (expired) {
+  if (submitError) {
     return (
-      <div className="space-y-4">
-        <h1 className="text-xl font-bold">Bearbeitungszeit abgelaufen</h1>
-        <p className="text-slate-700">
-          Die 30-minuetige Bearbeitungszeit ist vorbei. Die Antworten wurden
-          nicht gespeichert.
-        </p>
-        <button
-          type="button"
-          className="btn-primary w-full"
-          onClick={() => {
-            onReset();
-            navigate('/quiz/start');
-          }}
-        >
-          Quiz neu starten
-        </button>
+      <div className="screen">
+        <div className="result-body">
+          <div className="result-badge badge-fail">
+            <Icon name="AlertTriangle" size={48} strokeWidth={1.75} />
+          </div>
+          <h2 className="result-title">Hmm.</h2>
+          <p className="result-text">{submitError}</p>
+        </div>
+        <div className="cta-wrap">
+          <button
+            className="btn btn-primary btn-block"
+            onClick={() => {
+              onReset();
+              navigate('/start');
+            }}
+          >
+            Quiz neu starten
+          </button>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="space-y-5">
-      <div className="flex items-center justify-between gap-2">
-        <ProgressBar current={idx} total={totalQs} />
-        <Countdown
-          expiresAt={session.expiresAt}
-          onExpire={() => setExpired(true)}
-        />
-      </div>
+    <div className="screen">
+      <TopBar
+        label={`Frage ${idx + 1} / ${totalQs}`}
+        progress={(idx + (hasPicked ? 1 : 0.5)) / totalQs}
+        onBack={handleBack}
+        showBack
+      />
+      <div className="quiz-body">
+        <div className="eyebrow learn-eyebrow">
+          Quiz — {session.passMinCorrect} von {totalQs} zum Bestehen
+        </div>
+        <h2 className="quiz-q">{current.question.text}</h2>
 
-      <article className="card space-y-4">
-        <p className="text-xs uppercase tracking-wider text-kjg-primary font-semibold">
-          Frage {idx + 1}
-        </p>
-        <h2 className="text-lg font-semibold leading-snug">
-          {current.question.text}
-        </h2>
-
-        <ul className="space-y-2">
+        <div className="options">
           {current.optionOrder.map((origIdx, displayPos) => {
-            const isSelected = answers[idx] === origIdx;
+            const isPicked = picked === origIdx;
             return (
-              <li key={origIdx}>
-                <button
-                  type="button"
-                  onClick={() => pick(displayPos)}
-                  className={`w-full min-h-12 text-left rounded-lg border px-3 py-2 transition focus:outline-none focus:ring-2 focus:ring-kjg-primary ${
-                    isSelected
-                      ? 'border-kjg-primary bg-kjg-primary/10'
-                      : 'border-slate-300 bg-white hover:bg-slate-50'
-                  }`}
-                  aria-pressed={isSelected}
-                >
-                  <span className="font-medium mr-2">
-                    {String.fromCharCode(65 + displayPos)})
-                  </span>
+              <button
+                key={origIdx}
+                type="button"
+                onClick={() => pick(displayPos)}
+                className={`option ${isPicked ? 'option-picked' : ''}`}
+                aria-pressed={isPicked}
+              >
+                <span className="option-letter">
+                  {String.fromCharCode(65 + displayPos)}
+                </span>
+                <span className="option-text">
                   {current.question.options[origIdx]}
-                </button>
-              </li>
+                </span>
+                {isPicked && (
+                  <Icon
+                    name="CheckCircle2"
+                    size={22}
+                    className="text-emerald-600 flex-shrink-0"
+                  />
+                )}
+              </button>
             );
           })}
-        </ul>
-      </article>
-
-      <nav className="flex gap-2">
-        <button
-          type="button"
-          onClick={() => setIdx((i) => Math.max(0, i - 1))}
-          disabled={idx === 0}
-          className="btn-secondary flex-1 disabled:opacity-50"
-        >
-          Zurueck
-        </button>
-        {idx < totalQs - 1 ? (
+        </div>
+      </div>
+      <div className="cta-wrap">
+        {!isLast ? (
           <button
             type="button"
+            className="btn btn-primary btn-block"
+            disabled={!hasPicked}
             onClick={() => setIdx((i) => Math.min(totalQs - 1, i + 1))}
-            disabled={answers[idx] < 0}
-            className="btn-primary flex-1 disabled:opacity-50"
           >
-            Weiter
+            Nächste Frage
+            <Icon name="ArrowRight" size={20} />
           </button>
         ) : (
           <button
             type="button"
+            className="btn btn-primary btn-block"
+            disabled={!allAnswered || submitting}
             onClick={submit}
-            disabled={!answeredAll || submitting}
-            className="btn-primary flex-1 disabled:opacity-50"
           >
-            {submitting ? 'Sende ...' : 'Abgeben'}
+            {submitting ? 'Wird ausgewertet …' : 'Auswerten'}
+            <Icon name="ArrowRight" size={20} />
           </button>
         )}
-      </nav>
-
-      {!answeredAll && idx === totalQs - 1 && (
-        <p className="text-xs text-kjg-accent">
-          Bitte alle Fragen beantworten, bevor du abgibst.
-        </p>
-      )}
+      </div>
     </div>
   );
 }

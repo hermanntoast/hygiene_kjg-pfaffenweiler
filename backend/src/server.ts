@@ -23,6 +23,7 @@ import { scheduleRetentionCron } from './cron.ts';
 
 const PORT = Number(process.env.PORT ?? 3000);
 const COOKIE_SECRET = process.env.COOKIE_SECRET ?? '';
+const PUBLIC_BASE_URL = process.env.PUBLIC_BASE_URL ?? '';
 const SESSION_TTL_MIN = 30;
 const COOLDOWN_SECONDS = 60;
 
@@ -198,6 +199,7 @@ export function createApp() {
         correctCount: correct,
         totalCount: picked.length,
         issuedAt,
+        verifyBaseUrl: PUBLIC_BASE_URL,
       });
       db.prepare(
         `UPDATE attempts SET certificate_pdf = ?, certificate_hash = ? WHERE id = ?`,
