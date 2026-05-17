@@ -99,17 +99,17 @@ export function Certificate({ user, result, onReset }: Props) {
             </div>
           </div>
 
-          <div className="cert-sign-row" style={{ alignItems: 'end' }}>
-            <div className="cert-sign">
-              <div className="cert-sign-line" />
-              <div className="cert-sign-label">Unterschrift Teilnehmer*in</div>
+          <div
+            className="cert-sign"
+            style={{ marginTop: 18, maxWidth: 220, marginInline: 'auto', textAlign: 'center' }}
+          >
+            <div
+              className="cert-sign-line cert-sign-line--filled"
+              style={{ justifyContent: 'center' }}
+            >
+              F. Straub
             </div>
-            <div className="cert-sign">
-              <div className="cert-sign-line cert-sign-line--filled">
-                F. Straub
-              </div>
-              <div className="cert-sign-label">Hygiene-Verantwortlicher</div>
-            </div>
+            <div className="cert-sign-label">Hygiene-Verantwortlicher</div>
           </div>
 
           {qrDataUrl && (

@@ -296,44 +296,29 @@ export async function generateCertificate(
   drawStat(statsX + statsW / 4, 'QUIZ-ERGEBNIS', `${input.correctCount} / ${input.totalCount}`);
   drawStat(statsX + (3 * statsW) / 4, 'DATUM', formatGermanDate(input.issuedAt));
 
-  // ===== Signaturzeile (zwei Spalten) =====
+  // ===== Signaturzeile (nur Hygiene-Verantwortlicher, zentriert) =====
+  const sigW = 200;
   const sigY = statsY - 75;
-  const sigW = (PAGE_W - 2 * 90 - 40) / 2;
   const sigLineY = sigY + 14;
-  const sigGap = 40;
+  const sigX = (PAGE_W - sigW) / 2;
 
-  // Links: leere Linie, Label "Unterschrift Teilnehmer*in"
-  page.drawLine({
-    start: { x: 90, y: sigLineY },
-    end: { x: 90 + sigW, y: sigLineY },
-    thickness: 0.8,
-    color: COL_SLATE_500,
-  });
-  page.drawText('Unterschrift Teilnehmer*in', {
-    x: 90,
-    y: sigY,
-    size: 9,
-    font: helv,
-    color: COL_SLATE_500,
-  });
-
-  // Rechts: "F. Straub" (italic) über Linie, Label "Hygiene-Verantwortlicher"
-  const rightX = 90 + sigW + sigGap;
   page.drawText('F. Straub', {
-    x: rightX + 8,
+    x: sigX + 30,
     y: sigLineY + 4,
     size: 18,
     font: helvOblique,
     color: COL_SLATE_900,
   });
   page.drawLine({
-    start: { x: rightX, y: sigLineY },
-    end: { x: rightX + sigW, y: sigLineY },
+    start: { x: sigX, y: sigLineY },
+    end: { x: sigX + sigW, y: sigLineY },
     thickness: 0.8,
     color: COL_SLATE_500,
   });
-  page.drawText('Hygiene-Verantwortlicher', {
-    x: rightX,
+  const sigLabel = 'Hygiene-Verantwortlicher';
+  const sigLabelW = helv.widthOfTextAtSize(sigLabel, 9);
+  page.drawText(sigLabel, {
+    x: sigX + (sigW - sigLabelW) / 2,
     y: sigY,
     size: 9,
     font: helv,
