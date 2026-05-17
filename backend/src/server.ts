@@ -218,25 +218,83 @@ export function createApp() {
     });
   });
 
+  // ---------- Helper: PDF aus DB-Daten neu rendern ----------
+  //
+  // Beim Re-Download (public oder admin) erzeugen wir das PDF jedes Mal frisch
+  // mit dem aktuellen Layout, übernehmen aber den gespeicherten Hash exakt —
+  // so bleibt der QR-/Verify-Link gültig, und Format-Updates wirken auch auf
+  // bestehende Zertifikate.
+  async function renderStoredCertificate(id: number): Promise<{
+    pdf: Buffer;
+    hash: string;
+  } | null> {
+    type Row = {
+      first_name: string;
+      last_name: string;
+      correct_count: number;
+      total_count: number;
+      certificate_hash: string | null;
+      certificate_pdf: Buffer | null;
+      created_at: string;
+    };
+    const row = getDb()
+      .prepare(
+        `SELECT first_name, last_name, correct_count, total_count,
+                certificate_hash, certificate_pdf, created_at
+         FROM attempts WHERE id = ?`,
+      )
+      .get(id) as Row | undefined;
+    if (!row || !row.certificate_hash) return null;
+
+    const issuedAt = row.created_at.includes('T')
+      ? row.created_at
+      : `${row.created_at.replace(' ', 'T')}Z`;
+
+    try {
+      const cert = await generateCertificate({
+        attemptId: id,
+        firstName: row.first_name,
+        lastName: row.last_name,
+        correctCount: row.correct_count,
+        totalCount: row.total_count,
+        issuedAt,
+        verifyBaseUrl: PUBLIC_BASE_URL,
+        hashOverride: row.certificate_hash,
+      });
+      return { pdf: Buffer.from(cert.pdfBytes), hash: cert.hash };
+    } catch (e) {
+      console.error('[renderStoredCertificate]', e);
+      // Fallback: gespeicherter PDF-BLOB, falls Re-Render scheitert.
+      if (row.certificate_pdf) {
+        return { pdf: row.certificate_pdf, hash: row.certificate_hash };
+      }
+      return null;
+    }
+  }
+
   // ---------- Public certificate download ----------
 
-  app.get('/api/attempts/:id/certificate.pdf', (req, res) => {
+  app.get('/api/attempts/:id/certificate.pdf', async (req, res) => {
     const id = Number(req.params.id);
     const hash = String(req.query.hash ?? '');
     if (!Number.isFinite(id) || hash.length !== 64) {
       return res.status(400).json({ error: 'invalid_request' });
     }
     const row = getDb()
-      .prepare(`SELECT certificate_pdf, certificate_hash FROM attempts WHERE id = ?`)
-      .get(id) as { certificate_pdf: Buffer | null; certificate_hash: string | null } | undefined;
-    if (!row || !row.certificate_pdf || row.certificate_hash !== hash) {
+      .prepare(`SELECT certificate_hash FROM attempts WHERE id = ?`)
+      .get(id) as { certificate_hash: string | null } | undefined;
+    if (!row || row.certificate_hash !== hash) {
+      return res.status(404).json({ error: 'not_found' });
+    }
+    const rendered = await renderStoredCertificate(id);
+    if (!rendered) {
       return res.status(404).json({ error: 'not_found' });
     }
     res
       .status(200)
       .set('Content-Type', 'application/pdf')
       .set('Content-Disposition', 'attachment; filename="hygieneschulung-zertifikat.pdf"')
-      .send(row.certificate_pdf);
+      .send(rendered.pdf);
   });
 
   // ---------- Public verify-by-hash ----------
@@ -355,22 +413,20 @@ export function createApp() {
       .send(header + body + '\n');
   });
 
-  app.get('/api/admin/attempts/:id/certificate.pdf', requireAdmin, (req, res) => {
+  app.get('/api/admin/attempts/:id/certificate.pdf', requireAdmin, async (req, res) => {
     const id = Number(req.params.id);
     if (!Number.isFinite(id)) {
       return res.status(400).json({ error: 'invalid_id' });
     }
-    const row = getDb()
-      .prepare(`SELECT certificate_pdf FROM attempts WHERE id = ?`)
-      .get(id) as { certificate_pdf: Buffer | null } | undefined;
-    if (!row || !row.certificate_pdf) {
+    const rendered = await renderStoredCertificate(id);
+    if (!rendered) {
       return res.status(404).json({ error: 'not_found' });
     }
     res
       .status(200)
       .set('Content-Type', 'application/pdf')
       .set('Content-Disposition', 'attachment; filename="zertifikat.pdf"')
-      .send(row.certificate_pdf);
+      .send(rendered.pdf);
   });
 
   // ---------- Healthcheck ----------

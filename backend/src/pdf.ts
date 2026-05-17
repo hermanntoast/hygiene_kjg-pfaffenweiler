@@ -29,6 +29,12 @@ export interface CertificateInput {
   issuedAt: string;
   /** Basis-URL (z. B. https://hygiene.kjg-pfaffenweiler.de). */
   verifyBaseUrl?: string;
+  /**
+   * Wenn gesetzt, wird der Hash NICHT aus den Inputs berechnet sondern
+   * exakt dieser Wert verwendet (für Re-Render existierender Zertifikate,
+   * damit der QR-/Verify-Link gegen die DB-Spalte certificate_hash matcht).
+   */
+  hashOverride?: string;
 }
 
 export interface CertificateOutput {
@@ -164,7 +170,7 @@ function fitLogo(
 export async function generateCertificate(
   input: CertificateInput,
 ): Promise<CertificateOutput> {
-  const hash = computeCertificateHash(input);
+  const hash = input.hashOverride ?? computeCertificateHash(input);
   const base = (input.verifyBaseUrl ?? '').replace(/\/+$/, '');
   const verifyUrl = base ? `${base}/verify/${hash}` : `/verify/${hash}`;
 

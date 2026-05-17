@@ -19,7 +19,19 @@ interface User {
   email?: string;
 }
 
+export interface LastPass {
+  attemptId: number;
+  hash: string;
+  certificateUrl: string;
+  correctCount: number;
+  totalCount: number;
+  passedAt: string;
+  firstName: string;
+  lastName: string;
+}
+
 const PROFILE_KEY = 'kjg.userProfile';
+const PASS_KEY = 'kjg.lastPass';
 
 function loadProfile(): User | null {
   if (typeof localStorage === 'undefined') return null;
@@ -63,8 +75,50 @@ function saveProfile(user: User | null): void {
   }
 }
 
+function loadLastPass(): LastPass | null {
+  if (typeof localStorage === 'undefined') return null;
+  try {
+    const raw = localStorage.getItem(PASS_KEY);
+    if (!raw) return null;
+    const p = JSON.parse(raw) as Partial<LastPass>;
+    if (
+      typeof p.attemptId === 'number' &&
+      typeof p.hash === 'string' &&
+      typeof p.certificateUrl === 'string' &&
+      typeof p.correctCount === 'number' &&
+      typeof p.totalCount === 'number' &&
+      typeof p.passedAt === 'string' &&
+      typeof p.firstName === 'string' &&
+      typeof p.lastName === 'string'
+    ) {
+      return p as LastPass;
+    }
+  } catch {
+    try {
+      localStorage.removeItem(PASS_KEY);
+    } catch {
+      /* noop */
+    }
+  }
+  return null;
+}
+
+function saveLastPass(value: LastPass | null): void {
+  if (typeof localStorage === 'undefined') return;
+  try {
+    if (value) {
+      localStorage.setItem(PASS_KEY, JSON.stringify(value));
+    } else {
+      localStorage.removeItem(PASS_KEY);
+    }
+  } catch {
+    /* noop */
+  }
+}
+
 export default function App() {
   const [user, setUserState] = useState<User | null>(loadProfile);
+  const [lastPass, setLastPassState] = useState<LastPass | null>(loadLastPass);
   const [session, setSession] = useState<QuizStartResponse | null>(null);
   const [result, setResult] = useState<QuizSubmitResponse | null>(null);
   const [pickedQuestions, setPickedQuestions] = useState<QuestionPublic[] | null>(
@@ -76,18 +130,31 @@ export default function App() {
     saveProfile(u);
   };
 
+  const setLastPass = (p: LastPass | null) => {
+    setLastPassState(p);
+    saveLastPass(p);
+  };
+
   function reset() {
     setSession(null);
     setResult(null);
     setPickedQuestions(null);
-    // Wichtig: Name/E-Mail NICHT zurücksetzen — bleibt im localStorage.
+    // Name/E-Mail und letzten Pass-Status NICHT löschen.
   }
 
   return (
     <>
       <ScrollToTop />
       <Routes>
-      <Route path="/" element={<Home />} />
+      <Route
+        path="/"
+        element={
+          <Home
+            lastPass={lastPass}
+            onClearLastPass={() => setLastPass(null)}
+          />
+        }
+      />
       <Route
         path="/start"
         element={
@@ -115,6 +182,21 @@ export default function App() {
             onSubmitted={(r, qs) => {
               setResult(r);
               setPickedQuestions(qs);
+              if (r.passed && r.certificateUrl && user) {
+                const hashMatch = r.certificateUrl.match(/hash=([0-9a-f]{64})/);
+                if (hashMatch) {
+                  setLastPass({
+                    attemptId: r.attemptId,
+                    hash: hashMatch[1],
+                    certificateUrl: r.certificateUrl,
+                    correctCount: r.correctCount,
+                    totalCount: r.totalCount,
+                    passedAt: new Date().toISOString(),
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                  });
+                }
+              }
             }}
             onReset={reset}
           />
