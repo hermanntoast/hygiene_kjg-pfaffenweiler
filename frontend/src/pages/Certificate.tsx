@@ -70,7 +70,7 @@ export function Certificate({ user, result, onReset }: Props) {
           <div className="cert-corner cert-corner-tl" />
           <div className="cert-corner cert-corner-br" />
 
-          {/* Logo oben rechts */}
+          {/* Logo oben rechts (größer) */}
           <img
             src="/kjg-logo.png"
             alt="KjG Pfaffenweiler"
@@ -78,7 +78,7 @@ export function Certificate({ user, result, onReset }: Props) {
               position: 'absolute',
               top: 18,
               right: 18,
-              width: 90,
+              width: 130,
               height: 'auto',
             }}
           />
@@ -95,8 +95,8 @@ export function Certificate({ user, result, onReset }: Props) {
             an der Hygiene-Belehrung gemäß Infektionsschutzgesetz (IfSG) und
             Lebensmittelhygiene-Verordnung (LMHV) für das
           </div>
-          <div className="cert-event" style={{ fontSize: 22, margin: '16px 0' }}>
-            Dorffest Pfaffenweiler 2026
+          <div className="cert-event" style={{ fontSize: 22, margin: '28px 0' }}>
+            Dorffest VS-Pfaffenweiler 2026
           </div>
           <div className="cert-body">
             teilgenommen und das abschließende Quiz erfolgreich bestanden hat.
@@ -133,42 +133,37 @@ export function Certificate({ user, result, onReset }: Props) {
             <div className="cert-sign-label">Hygiene-Verantwortlicher</div>
           </div>
 
-          {/* Footer: Logo links | Meta center | QR rechts */}
+          {/* Footer: zentrierter Meta-Block links vom QR */}
           <div
             style={{
               marginTop: 28,
               paddingTop: 16,
               borderTop: '1px dashed var(--slate-200)',
               display: 'grid',
-              gridTemplateColumns: 'auto 1fr auto',
-              alignItems: 'end',
-              gap: 12,
+              gridTemplateColumns: '1fr auto',
+              alignItems: 'center',
+              gap: 16,
             }}
           >
-            <img
-              src="/kjg-logo.png"
-              alt="KjG Pfaffenweiler"
-              style={{ width: 72, height: 'auto' }}
-            />
-            <div style={{ textAlign: 'center', fontSize: 11 }}>
-              <div style={{ fontWeight: 700, color: 'var(--slate-900)' }}>
-                Pfaffenweiler e.V.
+            <div style={{ textAlign: 'center' }}>
+              <div
+                style={{
+                  fontWeight: 700,
+                  color: 'var(--slate-900)',
+                  fontSize: 14,
+                }}
+              >
+                KjG Pfaffenweiler e.V.
               </div>
-              <div style={{ color: 'var(--slate-500)', marginTop: 2 }}>
+              <div
+                style={{
+                  color: 'var(--slate-500)',
+                  marginTop: 4,
+                  fontSize: 11,
+                }}
+              >
                 Dorffest 20.–21.06.2026
               </div>
-              {hash && (
-                <div
-                  style={{
-                    marginTop: 6,
-                    fontSize: 9,
-                    color: 'var(--slate-400)',
-                    fontFamily: 'ui-monospace, monospace',
-                  }}
-                >
-                  Hash: {hash.slice(0, 20)}…
-                </div>
-              )}
             </div>
             <div style={{ textAlign: 'center' }}>
               {qrDataUrl ? (

@@ -214,14 +214,15 @@ export async function generateCertificate(
     });
   };
   drawCorner(cornerInset, PAGE_H - cornerInset, 1, -1); // TL
+  drawCorner(cornerInset, cornerInset, 1, 1); // BL
   drawCorner(PAGE_W - cornerInset, cornerInset, -1, 1); // BR
 
-  // ===== Logo oben rechts =====
+  // ===== Logo oben rechts (größer) =====
   if (logoImg) {
-    const topLogo = fitLogo(logoImg, 90);
+    const topLogo = fitLogo(logoImg, 140);
     page.drawImage(logoImg, {
-      x: PAGE_W - inset - 18 - topLogo.width,
-      y: PAGE_H - inset - 18 - topLogo.height,
+      x: PAGE_W - inset - 16 - topLogo.width,
+      y: PAGE_H - inset - 16 - topLogo.height,
       width: topLogo.width,
       height: topLogo.height,
     });
@@ -284,11 +285,11 @@ export async function generateCertificate(
   );
   y = drawCenteredLines(page, body1, y, 13, helv, COL_SLATE_700, 6);
 
-  // ===== Event: Dorffest, prominent =====
-  y -= 22;
+  // ===== Event: Dorffest, prominent (mehr Luft oben/unten) =====
+  y -= 44;
   drawCenteredText(
     page,
-    'Dorffest Pfaffenweiler 2026',
+    'Dorffest VS-Pfaffenweiler 2026',
     y,
     30,
     helvBold,
@@ -296,7 +297,7 @@ export async function generateCertificate(
   );
 
   // ===== Body 2 =====
-  y -= 38;
+  y -= 54;
   const body2 = wrapToWidth(
     'teilgenommen und das abschließende Quiz erfolgreich bestanden hat.',
     helv,
@@ -346,10 +347,13 @@ export async function generateCertificate(
   const sigY = statsY - 70;
   const sigLineY = sigY + 14;
   const sigX = (PAGE_W - sigW) / 2;
-  page.drawText('F. Straub', {
-    x: sigX + 30,
+  const sigName = 'F. Straub';
+  const sigNameSize = 18;
+  const sigNameW = helvOblique.widthOfTextAtSize(sigName, sigNameSize);
+  page.drawText(sigName, {
+    x: sigX + (sigW - sigNameW) / 2,
     y: sigLineY + 4,
-    size: 18,
+    size: sigNameSize,
     font: helvOblique,
     color: COL_SLATE_900,
   });
@@ -369,20 +373,9 @@ export async function generateCertificate(
     color: COL_SLATE_500,
   });
 
-  // ===== Footer-Bereich: Logo links, Meta center, QR rechts =====
-  const footerY = 60; // Baseline für die Logo/QR-Bottom-Kante
+  // ===== Footer: zentrierter Meta-Block + QR unten rechts =====
+  const footerY = 60;
   const footerInset = inset + 18;
-
-  // Logo unten links
-  if (logoImg) {
-    const bottomLogo = fitLogo(logoImg, 70);
-    page.drawImage(logoImg, {
-      x: footerInset,
-      y: footerY,
-      width: bottomLogo.width,
-      height: bottomLogo.height,
-    });
-  }
 
   // QR unten rechts
   const qrSize = 95;
@@ -397,7 +390,7 @@ export async function generateCertificate(
   const qrImg = await pdf.embedPng(new Uint8Array(qrPng));
   page.drawImage(qrImg, { x: qrX, y: qrY, width: qrSize, height: qrSize });
 
-  // Mini-Label über dem QR, zentriert relativ zum QR (nicht zur Page-Mitte)
+  // Mini-Label über dem QR
   const qrCenter = qrX + qrSize / 2;
   const qrLabelText = 'Scannen zum Verifizieren';
   const qrLabelW = helvOblique.widthOfTextAtSize(qrLabelText, 8);
@@ -409,46 +402,27 @@ export async function generateCertificate(
     color: COL_SLATE_500,
   });
 
-  // Mittiger Meta-Block zwischen Logo und QR
-  const centerStartX = footerInset + 80; // hinter dem Logo
-  const centerEndX = qrX - 12; // vor dem QR
+  // Mittiger Meta-Block links vom QR
+  const centerStartX = footerInset;
+  const centerEndX = qrX - 16;
   const centerMidX = (centerStartX + centerEndX) / 2;
 
-  const metaTitle = 'Pfaffenweiler e.V.';
-  const metaTitleW = helvBold.widthOfTextAtSize(metaTitle, 11);
+  const metaTitle = 'KjG Pfaffenweiler e.V.';
+  const metaTitleW = helvBold.widthOfTextAtSize(metaTitle, 12);
   page.drawText(metaTitle, {
     x: centerMidX - metaTitleW / 2,
     y: footerY + 50,
-    size: 11,
+    size: 12,
     font: helvBold,
     color: COL_SLATE_900,
   });
   const metaSub = 'Dorffest 20.–21.06.2026';
-  const metaSubW = helv.widthOfTextAtSize(metaSub, 9);
+  const metaSubW = helv.widthOfTextAtSize(metaSub, 10);
   page.drawText(metaSub, {
     x: centerMidX - metaSubW / 2,
-    y: footerY + 34,
-    size: 9,
+    y: footerY + 32,
+    size: 10,
     font: helv,
-    color: COL_SLATE_500,
-  });
-  const hashLabel = 'Hash:';
-  const hashLabelW = helvBold.widthOfTextAtSize(hashLabel, 7);
-  const hashShort = `${hash.slice(0, 24)}…`;
-  const hashShortW = helv.widthOfTextAtSize(hashShort, 7);
-  const hashTotalW = hashLabelW + 4 + hashShortW;
-  page.drawText(hashLabel, {
-    x: centerMidX - hashTotalW / 2,
-    y: footerY + 16,
-    size: 7,
-    font: helvBold,
-    color: COL_SLATE_500,
-  });
-  page.drawText(hashShort, {
-    x: centerMidX - hashTotalW / 2 + hashLabelW + 4,
-    y: footerY + 16,
-    size: 7,
-    font: helvOblique,
     color: COL_SLATE_500,
   });
 
