@@ -220,8 +220,8 @@ export async function generateCertificate(
     });
   };
   drawCorner(cornerInset, PAGE_H - cornerInset, 1, -1); // TL
-  drawCorner(cornerInset, cornerInset, 1, 1); // BL
   drawCorner(PAGE_W - cornerInset, cornerInset, -1, 1); // BR
+  // BL ist freigelassen — dort sitzt der Footer-Text.
 
   // ===== Logo oben rechts (größer) =====
   if (logoImg) {
@@ -408,25 +408,17 @@ export async function generateCertificate(
     color: COL_SLATE_500,
   });
 
-  // Mittiger Meta-Block links vom QR
-  const centerStartX = footerInset;
-  const centerEndX = qrX - 16;
-  const centerMidX = (centerStartX + centerEndX) / 2;
-
-  const metaTitle = 'KjG Pfaffenweiler e.V.';
-  const metaTitleW = helvBold.widthOfTextAtSize(metaTitle, 12);
-  page.drawText(metaTitle, {
-    x: centerMidX - metaTitleW / 2,
-    y: footerY + 50,
+  // Footer-Text unten links (im Eck, BL-Eckmarker wurde dafür weggelassen)
+  page.drawText('KjG Pfaffenweiler e.V.', {
+    x: footerInset,
+    y: footerY + 22,
     size: 12,
     font: helvBold,
     color: COL_SLATE_900,
   });
-  const metaSub = 'Dorffest 20.–21.06.2026';
-  const metaSubW = helv.widthOfTextAtSize(metaSub, 10);
-  page.drawText(metaSub, {
-    x: centerMidX - metaSubW / 2,
-    y: footerY + 32,
+  page.drawText('Dorffest 20.–21.06.2026', {
+    x: footerInset,
+    y: footerY + 6,
     size: 10,
     font: helv,
     color: COL_SLATE_500,

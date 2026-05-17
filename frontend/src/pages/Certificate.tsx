@@ -145,7 +145,7 @@ export function Certificate({ user, result, onReset }: Props) {
               gap: 16,
             }}
           >
-            <div style={{ textAlign: 'center' }}>
+            <div style={{ textAlign: 'left' }}>
               <div
                 style={{
                   fontWeight: 700,
