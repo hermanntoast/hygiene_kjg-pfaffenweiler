@@ -33,7 +33,7 @@ export function Certificate({ user, result, onReset }: Props) {
       errorCorrectionLevel: 'M',
       margin: 1,
       width: 256,
-      color: { dark: '#0F172A', light: '#FFFFFF00' },
+      color: { dark: '#0F172A', light: '#FFFFFF' },
     })
       .then(setQrDataUrl)
       .catch(() => setQrDataUrl(null));
@@ -66,12 +66,26 @@ export function Certificate({ user, result, onReset }: Props) {
 
       <div className="cert-card-wrap">
         <div className="cert-card">
+          {/* Eckmarker nur TL und BR — TR/BL sitzen die Logos */}
           <div className="cert-corner cert-corner-tl" />
-          <div className="cert-corner cert-corner-tr" />
-          <div className="cert-corner cert-corner-bl" />
           <div className="cert-corner cert-corner-br" />
 
-          <div className="cert-eyebrow">Hygiene-Belehrung</div>
+          {/* Logo oben rechts */}
+          <img
+            src="/kjg-logo.png"
+            alt="KjG Pfaffenweiler"
+            style={{
+              position: 'absolute',
+              top: 18,
+              right: 18,
+              width: 90,
+              height: 'auto',
+            }}
+          />
+
+          <div className="cert-eyebrow" style={{ marginTop: 12 }}>
+            Hygiene-Belehrung
+          </div>
           <div className="cert-org">KjG Pfaffenweiler e.V.</div>
           <div className="cert-divider" />
 
@@ -81,7 +95,9 @@ export function Certificate({ user, result, onReset }: Props) {
             an der Hygiene-Belehrung gemäß Infektionsschutzgesetz (IfSG) und
             Lebensmittelhygiene-Verordnung (LMHV) für das
           </div>
-          <div className="cert-event">Dorffest Pfaffenweiler 2026</div>
+          <div className="cert-event" style={{ fontSize: 22, margin: '16px 0' }}>
+            Dorffest Pfaffenweiler 2026
+          </div>
           <div className="cert-body">
             teilgenommen und das abschließende Quiz erfolgreich bestanden hat.
           </div>
@@ -101,7 +117,12 @@ export function Certificate({ user, result, onReset }: Props) {
 
           <div
             className="cert-sign"
-            style={{ marginTop: 18, maxWidth: 220, marginInline: 'auto', textAlign: 'center' }}
+            style={{
+              marginTop: 18,
+              maxWidth: 220,
+              marginInline: 'auto',
+              textAlign: 'center',
+            }}
           >
             <div
               className="cert-sign-line cert-sign-line--filled"
@@ -112,65 +133,71 @@ export function Certificate({ user, result, onReset }: Props) {
             <div className="cert-sign-label">Hygiene-Verantwortlicher</div>
           </div>
 
-          {qrDataUrl && (
-            <div
-              style={{
-                marginTop: 18,
-                paddingTop: 14,
-                borderTop: '1px dashed var(--slate-200)',
-                display: 'flex',
-                alignItems: 'center',
-                gap: 14,
-                justifyContent: 'center',
-              }}
-            >
-              <img
-                src={qrDataUrl}
-                alt="Verifikations-QR"
-                width={88}
-                height={88}
-                style={{
-                  background: '#fff',
-                  padding: 4,
-                  borderRadius: 8,
-                  border: '1px solid var(--slate-200)',
-                }}
-              />
-              <div style={{ textAlign: 'left' }}>
+          {/* Footer: Logo links | Meta center | QR rechts */}
+          <div
+            style={{
+              marginTop: 28,
+              paddingTop: 16,
+              borderTop: '1px dashed var(--slate-200)',
+              display: 'grid',
+              gridTemplateColumns: 'auto 1fr auto',
+              alignItems: 'end',
+              gap: 12,
+            }}
+          >
+            <img
+              src="/kjg-logo.png"
+              alt="KjG Pfaffenweiler"
+              style={{ width: 72, height: 'auto' }}
+            />
+            <div style={{ textAlign: 'center', fontSize: 11 }}>
+              <div style={{ fontWeight: 700, color: 'var(--slate-900)' }}>
+                Pfaffenweiler e.V.
+              </div>
+              <div style={{ color: 'var(--slate-500)', marginTop: 2 }}>
+                Dorffest 20.–21.06.2026
+              </div>
+              {hash && (
                 <div
                   style={{
-                    fontSize: 10,
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.1em',
-                    fontWeight: 600,
-                    color: 'var(--slate-500)',
-                    marginBottom: 4,
-                  }}
-                >
-                  Zertifikat verifizieren
-                </div>
-                <div style={{ fontSize: 12, color: 'var(--slate-700)' }}>
-                  Code scannen — zeigt Initialen + Datum
-                </div>
-                <div
-                  style={{
-                    marginTop: 4,
-                    fontFamily: 'ui-monospace, monospace',
+                    marginTop: 6,
                     fontSize: 9,
                     color: 'var(--slate-400)',
-                    wordBreak: 'break-all',
+                    fontFamily: 'ui-monospace, monospace',
                   }}
                 >
-                  {hash?.slice(0, 16)}…
+                  Hash: {hash.slice(0, 20)}…
                 </div>
-              </div>
+              )}
             </div>
-          )}
-
-          <div className="cert-foot">
-            <div className="cert-foot-mark">KjG</div>
-            <div className="cert-foot-meta">
-              Pfaffenweiler — Veranstaltung 20.–21.06.2026
+            <div style={{ textAlign: 'center' }}>
+              {qrDataUrl ? (
+                <img
+                  src={qrDataUrl}
+                  alt="Verifikations-QR"
+                  width={84}
+                  height={84}
+                  style={{
+                    background: '#fff',
+                    padding: 4,
+                    borderRadius: 8,
+                    border: '1px solid var(--slate-200)',
+                    display: 'block',
+                  }}
+                />
+              ) : (
+                <div style={{ width: 84, height: 84 }} />
+              )}
+              <div
+                style={{
+                  marginTop: 4,
+                  fontSize: 9,
+                  fontStyle: 'italic',
+                  color: 'var(--slate-500)',
+                }}
+              >
+                Scannen
+              </div>
             </div>
           </div>
         </div>
