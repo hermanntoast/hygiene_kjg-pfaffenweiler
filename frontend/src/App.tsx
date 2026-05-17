@@ -9,6 +9,7 @@ import { Certificate } from './pages/Certificate';
 import { AdminLogin } from './pages/AdminLogin';
 import { AdminDashboard } from './pages/AdminDashboard';
 import { Verify } from './pages/Verify';
+import { ScrollToTop } from './components/ScrollToTop';
 import type { QuestionPublic } from './data/questions';
 import type { QuizStartResponse, QuizSubmitResponse } from './lib/api';
 
@@ -83,7 +84,9 @@ export default function App() {
   }
 
   return (
-    <Routes>
+    <>
+      <ScrollToTop />
+      <Routes>
       <Route path="/" element={<Home />} />
       <Route
         path="/start"
@@ -130,6 +133,7 @@ export default function App() {
       <Route path="/verify/:hash" element={<Verify />} />
       <Route path="/admin" element={<AdminLogin />} />
       <Route path="/admin/dashboard" element={<AdminDashboard />} />
-    </Routes>
+      </Routes>
+    </>
   );
 }

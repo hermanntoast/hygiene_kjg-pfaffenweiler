@@ -23,8 +23,13 @@
  *   6 Getränke:         3 Fragen
  *   7 Reinigung:        3 Fragen
  *
- * Pro Sektion mindestens eine Frage mit quality="core" — diese wird beim
- * stratifizierten Sampling garantiert gezogen.
+ * Designprinzipien:
+ *   - Alle 4 Optionen pro Frage haben vergleichbare Länge — keine
+ *     Hinweise über offensichtlich kurze/lange korrekte Antwort.
+ *   - Falsch-Antworten sind plausible Missverständnisse (häufig in der
+ *     Praxis zu hören), keine offensichtlichen Nonsense-Aussagen.
+ *   - Die korrekte Position ist gleichmäßig auf A/B/C/D verteilt (5/5/5/5).
+ *   - Zielgruppe: Jugendliche ab 14 Jahre.
  *
  * REVIEW: Alle 20 Fragen müssen vor Go-Live von Florian Straub fachlich
  * gegen den BW-Leitfaden gegengeprüft werden.
@@ -58,51 +63,51 @@ export const questions: Question[] = [
     id: 1,
     sectionId: 1,
     quality: 'core',
-    text: 'Wann musst du deine Hände waschen? Welche Antwort ist am vollständigsten?',
+    text: 'Wann musst du dir während der Schicht die Hände waschen?',
     options: [
-      'Nur vor Arbeitsbeginn.',
-      'Nur nach dem Toilettengang.',
-      'Vor Arbeitsbeginn, nach Toilettengang, nach Kontakt mit rohen Lebensmitteln, nach Niesen oder Husten.',
-      'Nur am Ende der Schicht.',
+      'Einmal vor Schichtbeginn und einmal nach dem Mittagessen.',
+      'Vor Arbeitsbeginn, nach Toilette, nach Rohwarekontakt, nach Niesen.',
+      'Vor jedem neuen Burger und nach jedem Geldwechsel mit dem Gast.',
+      'Beim Schichtwechsel und immer dann, wenn die Hände sichtbar dreckig sind.',
     ],
-    correctIndex: 2,
+    correctIndex: 1,
     sourcePage: '13',
     explanation:
-      'BW-Leitfaden S. 13: Händereinigung vor Arbeitsbeginn, nach jedem Toilettengang, nach Arbeiten mit rohem Fleisch / Fisch / Geflügel / Eiern; zusätzlich nach Husten / Niesen.',
+      'BW-Leitfaden S. 13: Hände waschen vor Arbeitsbeginn, nach jedem Toilettengang, nach Arbeiten mit rohem Fleisch/Fisch/Geflügel/Eiern und nach Husten/Niesen. "Sichtbar dreckig" reicht nicht — es geht um unsichtbare Keime.',
   },
   {
     // REVIEW: Florian
     id: 2,
     sectionId: 1,
     quality: 'extension',
-    text: 'Was gilt am Burger-Stand für Rauchen und Dampfen?',
+    text: 'Was gilt am Burger-Stand für Rauchen und E-Zigaretten?',
     options: [
-      'Im Lebensmittelbereich nicht erlaubt.',
-      'Erlaubt, wenn man danach die Hände wäscht.',
-      'Erlaubt in den Pausen am Stand.',
-      'Erlaubt, wenn der Wind in die richtige Richtung weht.',
+      'Erlaubt, wenn man danach gründlich die Hände wäscht.',
+      'Erlaubt in den Pausen, solange man außerhalb des Standes raucht.',
+      'Erlaubt nur für volljährige Helfer und nur abseits der Theke.',
+      'Im gesamten Lebensmittelbereich grundsätzlich verboten.',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     sourcePage: '13',
     explanation:
-      'BW-Leitfaden S. 13: "Rauchen und Dampfen ist im Bereich der Lebensmittelherstellung und -behandlung nicht erlaubt."',
+      'BW-Leitfaden S. 13: "Rauchen und Dampfen ist im Bereich der Lebensmittelherstellung und -behandlung nicht erlaubt." Auch Pausen außerhalb sind nur okay, wenn der Rauchbereich klar abseits liegt — am Stand selbst gar nichts.',
   },
   {
     // REVIEW: Florian
     id: 3,
     sectionId: 1,
     quality: 'extension',
-    text: 'Du hast Magen-Darm-Beschwerden. Was tust du?',
+    text: 'Du hast seit gestern Durchfall, fühlst dich aber heute schon besser. Was tust du?',
     options: [
-      'Trotzdem helfen — die Beschwerden sind ja nicht stark.',
-      'Erst die Hände waschen und dann ganz normal weiterarbeiten.',
-      'Nicht mit Lebensmitteln arbeiten — Magen-Darm-Erkrankungen können über Lebensmittel übertragen werden.',
-      'Nur in den Verkauf gehen, nicht in die Zubereitung.',
+      'Hände noch gründlicher waschen und nur an die Kasse, nicht in die Zubereitung.',
+      'Mit Einmalhandschuhen weiterarbeiten — die schützen die Lebensmittel.',
+      'Eine Maske aufsetzen und alles ist gut.',
+      'Nicht mit Lebensmitteln arbeiten, auch nicht im Verkauf oder an der Theke.',
     ],
-    correctIndex: 2,
+    correctIndex: 3,
     sourcePage: '13',
     explanation:
-      'BW-Leitfaden S. 13: Personen mit Magen-Darm-Erkrankungen (auch Salmonellenausscheider) dürfen nicht mit der Herstellung, Be- und Verarbeitung von Lebensmitteln beschäftigt werden.',
+      'BW-Leitfaden S. 13: Personen mit Magen-Darm-Erkrankungen dürfen nicht mit Herstellung, Be- oder Verarbeitung von Lebensmitteln beschäftigt werden — Verkauf und Ausgabe zählen ebenfalls dazu, weil dabei verzehrfertige Speisen berührt werden.',
   },
 
   // ---- Sektion 2: Verkaufsstand & Ausstattung (2 Fragen) ----
@@ -111,34 +116,34 @@ export const questions: Question[] = [
     id: 4,
     sectionId: 2,
     quality: 'core',
-    text: 'Wie muss ein Verkaufsstand für Lebensmittel gestaltet sein?',
+    text: 'Wie muss ein Verkaufsstand für Lebensmittel aufgebaut sein?',
     options: [
-      'Offen, damit die Gäste alles gut sehen können.',
-      'Überdacht, an drei Seiten geschlossen, mit Spuckschutz an der Vorderseite.',
-      'Nur überdacht, Wände sind nicht nötig.',
-      'Mit einer Glasvitrine, die rundum offen ist.',
+      'Überdacht, seitlich/hinten geschlossen, Spuckschutz an der Theke.',
+      'Vorne offen, hinten ein Sichtschutz für die Helfer.',
+      'Komplett offen, damit Wärme und Gerüche abziehen können.',
+      'Nur überdacht — die Seiten werden durch die Verkaufstische gebildet.',
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     sourcePage: '5',
     explanation:
-      'BW-Leitfaden S. 5: Stände sollten überdacht sowie seitlich und rückwärts umschlossen sein; offene Lebensmittel werden an der Vorderseite durch Spuckschutz vor Husten / Niesen geschützt.',
+      'BW-Leitfaden S. 5: Stände sollten überdacht und seitlich/rückwärtig umschlossen sein; offene Lebensmittel an der Vorderseite durch Spuckschutz vor Husten/Niesen schützen. Tische als "Wände" reichen nicht — Staub und Spritzer kämen ungehindert dran.',
   },
   {
     // REVIEW: Florian
     id: 5,
     sectionId: 2,
     quality: 'extension',
-    text: 'Eis, das in Getränke kommt — woraus muss es hergestellt sein?',
+    text: 'Welches Wasser darf für Eiswürfel in den Getränken verwendet werden?',
     options: [
-      'Aus Quellwasser aus dem Brunnen.',
-      'Aus Trinkwasser.',
-      'Aus Mineralwasser ohne Kohlensäure.',
-      'Egal, solange es kalt ist.',
+      'Stilles Mineralwasser aus Flaschen, das ist am sichersten.',
+      'Gefiltertes Brunnenwasser — der natürliche Geschmack ist beliebt.',
+      'Abgekochtes Wasser aus dem Wasserkocher, das ist keimfrei.',
+      'Trinkwasser in Trinkwasserqualität, anderes ist nicht zulässig.',
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     sourcePage: '10',
     explanation:
-      'BW-Leitfaden S. 10: "Eis, das direkt mit Lebensmitteln in Berührung kommt oder in Getränke gegeben wird, muss aus Trinkwasser hergestellt sein."',
+      'BW-Leitfaden S. 10: "Eis, das direkt mit Lebensmitteln in Berührung kommt oder in Getränke gegeben wird, muss aus Trinkwasser hergestellt sein." Mineralwasser oder Brunnenwasser haben andere Anforderungen und sind nicht das, was der Leitfaden verlangt.',
   },
 
   // ---- Sektion 3: Lagerung & Kühlkette (3 Fragen) ----
@@ -148,40 +153,50 @@ export const questions: Question[] = [
     sectionId: 3,
     quality: 'core',
     text: 'Bei welcher Temperatur müssen die tiefgefrorenen Hackfleisch-Patties spätestens gelagert werden?',
-    options: ['−5 °C', '−10 °C', '−18 °C', '0 °C'],
+    options: [
+      'Höchstens 0 °C — kalt genug für Fleisch.',
+      'Höchstens −5 °C — der gängige Wert für TK.',
+      'Höchstens −18 °C — Vorgabe für Tiefkühlware.',
+      'Höchstens −10 °C — Standard im Haushaltsgefrierer.',
+    ],
     correctIndex: 2,
     sourcePage: '9',
     explanation:
-      'BW-Leitfaden S. 9, Tabelle 2: Tiefkühlprodukte werden bei mindestens −18 °C gelagert. Das gilt auch für unsere TK-Hackfleisch-Patties — die bleiben bis zur Verwendung im Gefrierer.',
+      'BW-Leitfaden S. 9, Tabelle 2: Tiefkühlprodukte werden bei mindestens −18 °C gelagert — egal ob Industrie- oder Haushaltsgefrierer. Wärmer ist nicht erlaubt.',
   },
   {
     // REVIEW: Florian
     id: 7,
     sectionId: 3,
     quality: 'extension',
-    text: 'Steak und Wurst lagern wir im Kühlschrank. Welche maximale Lagertemperatur gilt laut DIN 10508 / BW-Leitfaden für Frischfleisch und Fleischerzeugnisse?',
-    options: ['4 °C', '7 °C', '10 °C', '15 °C'],
+    text: 'Frisches Steak und Bratwurst lagern wir im Kühlschrank. Welche maximale Temperatur erlaubt der BW-Leitfaden?',
+    options: [
+      'Höchstens 4 °C — der Wert für Hackfleisch und Geflügel.',
+      'Höchstens 7 °C — Wert für Frischfleisch und Fleischerzeugnisse.',
+      'Höchstens 10 °C — wie für allgemeine Kühlware üblich.',
+      'Höchstens 12 °C, wenn das Fleisch noch am gleichen Tag verbraucht wird.',
+    ],
     correctIndex: 1,
     sourcePage: '9',
     explanation:
-      'BW-Leitfaden S. 9, Tabelle 2: Frischfleisch und Fleischerzeugnisse höchstens 7 °C. Hackfleisch / Geflügel ist strenger (4 °C), Tiefkühlware noch strenger (−18 °C).',
+      'BW-Leitfaden S. 9, Tabelle 2: Frischfleisch und Fleischerzeugnisse höchstens 7 °C. 4 °C wäre die strengere Stufe für Hackfleisch/Geflügel — fürs Steak nicht erforderlich. 10 °C oder mehr wären zu warm.',
   },
   {
     // REVIEW: Florian
     id: 8,
     sectionId: 3,
     quality: 'extension',
-    text: 'Wie müssen rohe Lebensmittel (Patties, Steak, Wurst) gegenüber verzehrfertigen Lebensmitteln gelagert werden?',
+    text: 'Wo lagerst du rohes Fleisch (Patties, Steak, Wurst) gegenüber verzehrfertigen Lebensmitteln?',
     options: [
-      'Im selben Behälter, damit nichts verloren geht.',
-      'Getrennt, räumlich oder in verschlossenen Behältnissen.',
-      'Egal, solange beides kalt ist.',
-      'Verzehrfertiges unten, Rohes oben.',
+      'Im selben Fach — Hauptsache, alles ist gekühlt.',
+      'Rohes ganz oben, Fertiges unten, damit man es beim Greifen unterscheidet.',
+      'Räumlich getrennt oder in dicht verschlossenen Behältern.',
+      'Alles zusammen in Folie eingewickelt im gleichen Fach.',
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     sourcePage: '8',
     explanation:
-      'BW-Leitfaden S. 8: Rohware muss getrennt von verzehrfertigen Lebensmitteln gelagert werden — räumlich getrennt oder durch geeignete, verschlossene Behälter.',
+      'BW-Leitfaden S. 8: Rohware muss von verzehrfertigen Lebensmitteln getrennt gelagert werden — räumlich oder durch verschlossene Behälter. Die alte Küchenregel "Rohes unten" stimmt für die Tropf-Richtung, ist im BW-Leitfaden aber nicht die Vorgabe — entscheidend ist die saubere Trennung.',
   },
 
   // ---- Sektion 4: Zubereitung & Kreuzkontamination (3 Fragen) ----
@@ -190,46 +205,51 @@ export const questions: Question[] = [
     id: 9,
     sectionId: 4,
     quality: 'core',
-    text: 'Wie müssen unsere Hackfleisch-Patties zubereitet werden?',
+    text: 'Wie müssen unsere Burger-Patties (Hackfleisch) zubereitet werden?',
     options: [
-      'Medium, mit rosa Kern.',
-      'Vollständig durcherhitzt — keine Abgabe von rohen oder halbgaren Patties.',
-      'Roh anbieten, der Gast brutzelt sie selbst.',
-      'Nur an der Oberfläche angebraten.',
+      'Außen scharf angebraten, innen leicht rosa — Restaurant-Stil.',
+      'Vollständig durchgegart, mindestens 70 °C im Kern.',
+      'Auf Wunsch des Gastes auch "medium" oder "rare".',
+      'Außen kross, innen saftig-rosa wie bei einem guten Steak.',
     ],
     correctIndex: 1,
     sourcePage: '10',
     explanation:
-      'BW-Leitfaden S. 10: Erzeugnisse aus Hackfleisch dürfen auf Vereins- und Straßenfesten nur abgegeben werden, wenn sie vollständig durcherhitzt sind. Salmonellen- und EHEC-Risiko.',
+      'BW-Leitfaden S. 10: Hackfleischerzeugnisse dürfen auf Vereins- und Straßenfesten nur durchgegart abgegeben werden (Kerntemperatur ~70 °C). Im Steak sitzen Bakterien nur an der Oberfläche — im Hackfleisch sind sie überall, weil das Fleisch zerkleinert wurde. "Medium" ist beim Hack nicht zulässig.',
   },
   {
     // REVIEW: Florian
     id: 10,
     sectionId: 4,
     quality: 'extension',
-    text: 'Bei welcher Temperatur sollte die Fritteuse für die Pommes maximal eingestellt werden?',
-    options: ['150 °C', '175 °C', '200 °C', '225 °C'],
-    correctIndex: 1,
+    text: 'Auf welcher maximalen Temperatur sollte die Pommes-Fritteuse laufen?',
+    options: [
+      '150 °C — das schont das Frittierfett am längsten.',
+      '200 °C — Pommes werden so schneller knusprig.',
+      '175 °C — Grenze gegen die Bildung von Acrylamid.',
+      '220 °C — wie in vielen Schnellrestaurants üblich.',
+    ],
+    correctIndex: 2,
     sourcePage: '8',
     explanation:
-      'BW-Leitfaden S. 8: Fritteuse auf maximal 175 °C einstellen, um die unerwünschte Acrylamidbildung zu vermeiden.',
+      'BW-Leitfaden S. 8: Fritteuse auf maximal 175 °C einstellen, um die Acrylamidbildung zu reduzieren. Höher knusprigt nicht besser — es entstehen nur mehr gesundheitlich bedenkliche Stoffe.',
   },
   {
     // REVIEW: Florian
     id: 11,
     sectionId: 4,
     quality: 'extension',
-    text: 'Du hast rohe Patties / Steak / Wurst verarbeitet. Was machst du, bevor du das Burger-Brötchen schneidest?',
+    text: 'Du hast gerade rohes Fleisch (Patty, Steak, Wurst) geschnitten. Was machst du, bevor du das Burger-Brötchen schneidest?',
     options: [
+      'Brett und Messer kurz mit kaltem Wasser abspülen.',
+      'Mit dem Küchenkrepp einmal feucht abwischen.',
       'Egal — die Hitze beim Braten tötet alles ab.',
-      'Kurz mit dem Geschirrtuch abwischen reicht.',
-      'Separates Schneidebrett und Messer verwenden bzw. das benutzte vorher gründlich reinigen.',
-      'Mit kaltem Wasser kurz abspülen.',
+      'Anderes Brett und Messer nehmen oder beides gründlich abwaschen.',
     ],
-    correctIndex: 2,
+    correctIndex: 3,
     sourcePage: '10',
     explanation:
-      'BW-Leitfaden S. 10: Für rohes Fleisch und Geflügel separate Bereiche, Arbeitsgeräte und intakte Schneidebretter; Spülmaschinen zur Reinigung und Bakterienabtötung.',
+      'BW-Leitfaden S. 10: Für rohes Fleisch/Geflügel separate Bereiche, Arbeitsgeräte und Schneidebretter — oder gründliche Reinigung dazwischen. Kaltes Wasser oder ein Wisch reichen nicht; das Brötchen wird ja nicht mehr erhitzt.',
   },
 
   // ---- Sektion 5: Ausgabe & verzehrfertige Lebensmittel (3 Fragen) ----
@@ -238,51 +258,51 @@ export const questions: Question[] = [
     id: 12,
     sectionId: 5,
     quality: 'core',
-    text: 'Du reichst einem Gast den fertigen Burger an. Was ist erlaubt?',
+    text: 'Wie reichst du einem Gast den fertigen Burger an?',
     options: [
-      'Burger-Brötchen mit der bloßen Hand greifen, wenn die Hände sauber sind.',
-      'Mit Zange, Servietten oder Einmalhandschuhen anfassen — kein direkter Handkontakt.',
-      'Mit dem Ellbogen schieben.',
-      'Geld und Burger in derselben Bewegung übergeben.',
+      'Mit sauberer Hand am Brötchen — kurz reichen, kein Drama.',
+      'Auf Backpapier ablegen, der Gast greift selbst zum Burger.',
+      'Mit Zange, Servietten oder Einmalhandschuhen — kein direkter Handkontakt.',
+      'Mit dem Burgerwender direkt vom Rost auf den Pappteller des Gastes.',
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     sourcePage: '8',
     explanation:
-      'BW-Leitfaden S. 8: Bei verzehrfertigen Lebensmitteln ist hohes Hygieneniveau gefordert; sofern möglich Besteck verwenden, ansonsten sorgfältige Händereinigung.',
+      'BW-Leitfaden S. 8: Verzehrfertige Lebensmittel sollten möglichst mit Besteck angefasst werden. "Saubere Hand" ist kein zuverlässiger Ersatz, weil Keime unsichtbar sind. Backpapier hilft nicht, wenn man trotzdem reingreift.',
   },
   {
     // REVIEW: Florian
     id: 13,
     sectionId: 5,
     quality: 'extension',
-    text: 'Wann musst du Einmalhandschuhe wechseln?',
+    text: 'Wann musst du die Einmalhandschuhe wechseln?',
     options: [
-      'Erst, wenn sie sichtbar kaputt sind.',
-      'Nach einer Stunde Tragezeit, sonst nie.',
-      'Regelmäßig, spätestens nach Kontakt mit unsauberen Bereichen wie Verpackung, Müll oder Geld.',
-      'Gar nicht — Einmalhandschuhe ersetzen das Händewaschen.',
+      'Wenn sie sichtbar verschmutzt oder beschädigt sind.',
+      'Bei jedem Pausenende und beim Schichtwechsel.',
+      'Nach Kontakt mit unsauberen Bereichen — Müll, Geld, Verpackungsmaterial.',
+      'Einmal pro Tag — sonst sind es ja keine "Einmal"-Handschuhe.',
     ],
     correctIndex: 2,
     sourcePage: '8',
     explanation:
-      'BW-Leitfaden S. 8: Einmalhandschuhe verschmutzen genauso schnell wie bloße Hände und sind regelmäßig zu wechseln.',
+      'BW-Leitfaden S. 8: Einmalhandschuhe verschmutzen genauso schnell wie bloße Hände. Entscheidend ist der Auslöser — Kontakt mit unsauberen Dingen — nicht eine feste Zeitspanne. "Sichtbar verschmutzt" ist zu spät.',
   },
   {
     // REVIEW: Florian
     id: 14,
     sectionId: 5,
     quality: 'extension',
-    text: 'Wie gibst du Pommes nach dem Frittieren an den Gast aus?',
+    text: 'Wie gibst du frisch frittierte Pommes an den Gast aus?',
     options: [
-      'Mit der bloßen Hand in die Tüte fallen lassen.',
-      'Mit Zange oder Schaufel.',
-      'Aus der Fritteuse direkt in die Hand des Gastes kippen.',
-      'Auf einem Stück Küchenpapier auf der Theke abkühlen lassen und der Gast greift selbst.',
+      'Mit Schaufel oder Zange direkt in die Tüte portionieren.',
+      'Aus dem Frittierkorb auf einem Tablett abkühlen lassen, Gast greift selbst.',
+      'Mit dem Korb direkt in die Tüte des Gastes kippen.',
+      'Auf einem Stück Küchenpapier in der Auslage, Gast bedient sich.',
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     sourcePage: '8',
     explanation:
-      'BW-Leitfaden S. 8: Verzehrfertige Lebensmittel sollten möglichst mit Besteck (Zange, Schaufel, Löffel) angefasst werden — kein bloßer Handkontakt.',
+      'BW-Leitfaden S. 8: Verzehrfertige Lebensmittel möglichst mit Besteck (Zange, Schaufel, Löffel) anfassen. "Selbstbedienung" aus der Auslage führt zu Handkontakt durch wechselnde Gäste — das ist gerade nicht erlaubt.',
   },
 
   // ---- Sektion 6: Getränke & Eis (3 Fragen) ----
@@ -291,51 +311,51 @@ export const questions: Question[] = [
     id: 15,
     sectionId: 6,
     quality: 'core',
-    text: 'Wie entnimmst du Eiswürfel für die Cola?',
+    text: 'Wie entnimmst du Eiswürfel für eine Cola?',
     options: [
-      'Mit der bloßen Hand — geht am schnellsten.',
-      'Mit dem Eisportionierer oder einem sauberen Löffel; nicht mit der Hand.',
-      'Mit dem Trinkglas selbst.',
-      'Mit einer Serviette greifen.',
+      'Mit dem sauberen Eisportionierer oder einem dafür reservierten Löffel.',
+      'Mit dem Glas direkt durchs Eis ziehen — schneller geht\'s nicht.',
+      'Mit einer sauberen Serviette greifen, das ist hygienisch.',
+      'Mit der Hand, solange Einmalhandschuhe getragen werden.',
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     sourcePage: '10',
     explanation:
-      'BW-Leitfaden S. 10: Das Eis soll nicht mit der bloßen Hand berührt werden; saubere Portionier- und Aufbewahrungshilfen verwenden.',
+      'BW-Leitfaden S. 10: Das Eis soll nicht mit der bloßen Hand berührt werden — auch nicht mit Handschuh, weil der ebenso verschmutzt ist wie die Hand. Glas durchs Eis ziehen birgt das Risiko von Glasbruch direkt im Eis.',
   },
   {
     // REVIEW: Florian
     id: 16,
     sectionId: 6,
     quality: 'extension',
-    text: 'Wer ist für die Hygiene der Zapfanlage am Stand verantwortlich?',
+    text: 'Was machst du mit Trinkgläsern oder Bechern, die abgesplittert oder beschädigt sind?',
     options: [
-      'Nur der Verleiher.',
-      'Niemand — die Zapfanlage reinigt sich selbst.',
-      'Verleiher und Nutzer (Entleiher) gemeinsam; der Nutzer muss vor Betrieb Reinigung / ggf. Desinfektion sicherstellen.',
-      'Nur die Brauerei.',
+      'Mit Klebeband flicken und weiter benutzen.',
+      'Aussortieren und nicht mehr verwenden — Verletzungsgefahr.',
+      'Nur noch für nicht-alkoholische Getränke verwenden.',
+      'Aufheben und am Saisonende komplett entsorgen.',
     ],
-    correctIndex: 2,
-    sourcePage: '10',
+    correctIndex: 1,
+    sourcePage: '5',
     explanation:
-      'BW-Leitfaden S. 10: Für die Hygiene der Anlagen sind Verleiher und Entleiher verantwortlich; der Nutzer beschafft die Reinigungsanleitung und reinigt vor Betrieb.',
+      'BW-Leitfaden S. 5 + 6: Beschädigte oder gesplitterte Behältnisse dürfen nicht verwendet werden. Splitter können ins Getränk gelangen und Verletzungen verursachen — kein "weiter mit Klebeband" und auch nicht "nur Cola".',
   },
   {
     // REVIEW: Florian
     id: 17,
     sectionId: 6,
     quality: 'extension',
-    text: 'Welche Anforderung gilt für das Wasser, das wir am Stand für Getränke und zum Reinigen nutzen?',
+    text: 'Welche Anforderung gilt für das Wasser am Stand (für Getränke und zum Reinigen)?',
     options: [
-      'Es muss Trinkwasserqualität haben.',
-      'Gartenschlauch-Wasser reicht aus.',
-      'Regenwasser ist auch in Ordnung.',
-      'Beliebiges Leitungswasser, egal welcher Schlauch verwendet wird.',
+      'Trinkwasserqualität — Gartenschläuche sind nicht zulässig.',
+      'Mineralwasser aus Flaschen ist verpflichtend.',
+      'Mit Filterkanne aufbereitetes Leitungswasser reicht.',
+      'Klares Brunnenwasser ist erlaubt, wenn es vor Ort geprüft wurde.',
     ],
     correctIndex: 0,
     sourcePage: '6',
     explanation:
-      'BW-Leitfaden S. 6: Wasser für Herstellung, Behandlung und Reinigung muss Trinkwasserqualität haben. Schläuche müssen lebensmittelgeeignet sein (KTW-A / DVGW W270). Gartenschläuche sind nicht zulässig.',
+      'BW-Leitfaden S. 6: Wasser für Herstellung, Behandlung und Reinigung muss Trinkwasserqualität haben. Schläuche müssen lebensmittelgeeignet sein (KTW-A / DVGW W270). Gartenschläuche und Brunnenwasser sind nicht zulässig.',
   },
 
   // ---- Sektion 7: Reinigung, Abfall & Schädlinge (3 Fragen) ----
@@ -344,34 +364,34 @@ export const questions: Question[] = [
     id: 18,
     sectionId: 7,
     quality: 'core',
-    text: 'Am KjG-Stand haben wir eine Spülmaschine. Wenn sie ausfällt oder ein Topf von Hand gespült werden muss, wie funktioniert das richtige Zwei-Becken-Verfahren?',
+    text: 'Die Spülmaschine ist kurz ausgefallen — du musst von Hand spülen. Wie funktioniert das richtige Zwei-Becken-Verfahren?',
     options: [
-      'Ein Becken kaltes Wasser, fertig.',
-      'Erstes Becken: so heißes Wasser wie möglich mit Spülmittel — zweites Becken: sauberes, warmes Nachspülwasser.',
-      'Erstes Becken: Nachspülwasser — zweites Becken: Spülmittel.',
-      'Beide Becken nur mit Spülmittel ohne Klarspülen.',
+      'Beide Becken heißes Wasser mit Spülmittel, doppelt hilft doppelt.',
+      'Becken 1 möglichst heiß mit Spülmittel, Becken 2 sauberes warmes Klarspülwasser.',
+      'Becken 1 klares Wasser zuerst, Becken 2 dann Spülmittel zum Nachfetten.',
+      'Becken 1 Spülmittel, Becken 2 Desinfektionsmittel für jede Charge.',
     ],
     correctIndex: 1,
     sourcePage: '6',
     explanation:
-      'BW-Leitfaden S. 6: Manuelles Spülen erfolgt in zwei Becken — eines mit heißem Wasser und Spülmittel, eines mit sauberem, warmem Nachspülwasser. Die Spülmaschine ist die erste Wahl, das Zwei-Becken-Verfahren der Backup-Plan.',
+      'BW-Leitfaden S. 6: Manuelles Spülen erfolgt in zwei Becken — eines mit heißem Wasser und Spülmittel, eines mit sauberem, warmem Nachspülwasser. Klarspülwasser zuerst macht keinen Sinn, Desinfektion ist hier nicht vorgeschrieben.',
   },
   {
     // REVIEW: Florian
     id: 19,
     sectionId: 7,
     quality: 'extension',
-    text: 'Wie schützt du Lebensmittel und Stand vor Schädlingen (Insekten, Vögel)?',
+    text: 'Wie schützt du Lebensmittel und Stand vor Insekten und Vögeln?',
     options: [
-      'Lebensmittel stets abdecken, Müll geschlossen halten, Stand sauber halten.',
-      'Insektenspray direkt auf die Lebensmittel sprühen.',
-      'Vögel mit der Hand verscheuchen, Reste sind ok.',
-      'Türen offen lassen, damit die Insekten auch wieder rauskommen.',
+      'Mit Insektenspray die Standumgebung am Morgen vorbeugend behandeln.',
+      'Mit Klebefallen direkt neben den Lebensmitteln aufstellen.',
+      'Mit Räucherstäbchen oder Duftkerzen am Stand — Insekten mögen das nicht.',
+      'Lebensmittel abdecken, Müll geschlossen, Stand sauber und Krümel-frei halten.',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     sourcePage: '7',
     explanation:
-      'KjG-Hygieneplan + BW-Leitfaden S. 7: Lebensmittel abdecken, Müll geschlossen lagern, Stand sauber halten; Insektizide gehören nicht in den Lebensmittelbereich.',
+      'BW-Leitfaden S. 7 + KjG-Hygieneplan: Lebensmittel abdecken, Müll geschlossen lagern, Stand sauber halten — Hygiene statt Chemie. Insektizide gehören NICHT in den Lebensmittelbereich, Klebefallen erst recht nicht direkt neben Speisen.',
   },
   {
     // REVIEW: Florian
@@ -380,15 +400,15 @@ export const questions: Question[] = [
     quality: 'extension',
     text: 'Wie werden Lebensmittelabfälle am Stand entsorgt?',
     options: [
-      'In die Biotonne — geht am schnellsten.',
-      'In Mehrwegbehälter ohne Deckel, direkt neben den Lebensmitteln.',
-      'In dicht schließende Müllsammelbehälter, räumlich von Lebensmitteln getrennt; Speiseabfälle nicht in die Biotonne.',
-      'Auf dem Boden hinter dem Stand sammeln.',
+      'In dicht schließenden Müllsammelbehältern, getrennt von Lebensmitteln; nicht in die Biotonne.',
+      'In die normale Biotonne, das ist die klimafreundlichste Lösung.',
+      'In offenen Eimern hinter dem Stand, am Ende einmal komplett geleert.',
+      'Erst sammeln und dann gemeinsam mit den Speiseresten der Gäste in den Restmüll.',
     ],
-    correctIndex: 2,
+    correctIndex: 0,
     sourcePage: '7',
     explanation:
-      'BW-Leitfaden S. 7: Lebensmittelabfälle in dicht schließende, ordnungsgemäße Müllsammelbehälter; eine Entsorgung über die Biotonne ist nicht zulässig.',
+      'BW-Leitfaden S. 7: Lebensmittelabfälle gehören in dicht schließende, ordnungsgemäße Müllsammelbehälter, räumlich getrennt von den Lebensmitteln. Eine Entsorgung über die Biotonne ist ausdrücklich NICHT zulässig — auch wenn es nachhaltig klingt.',
   },
 ];
 

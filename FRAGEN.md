@@ -7,6 +7,13 @@ Quelle: BW-Leitfaden „Leitfaden für den Umgang mit Lebensmitteln auf Vereins-
 und Straßenfesten" (Ministerium für Ländlichen Raum und Verbraucherschutz
 Baden-Württemberg, Stand Januar 2025). Seitenzahlen je Frage in Klammern.
 
+**Designprinzipien (Zielgruppe: Jugendliche ab 14 Jahre)**
+- Alle 4 Optionen pro Frage haben **vergleichbare Länge** — kein Hinweis durch
+  „die korrekte ist die längste".
+- Falsch-Antworten sind **plausible Missverständnisse** aus der Praxis, nicht
+  offensichtlicher Nonsense.
+- **Richtige Position gleichmäßig verteilt**: 5×A, 5×B, 5×C, 5×D.
+
 **Sortiment-Annahmen am KjG-Stand**: Burger (Hackfleisch-Patties TK), Steak
 (Kühlschrank), Wurst (Kühlschrank), Pommes (Kühlschrank), Getränke. Spülmaschine
 am Stand, Zwei-Becken-Verfahren als Backup.
@@ -18,66 +25,72 @@ am Stand, Zwei-Becken-Verfahren als Backup.
 ## Sektion 1 — Personalhygiene & Handhygiene
 
 ### Frage 1 *(core, S. 13)*
-**Wann musst du deine Hände waschen? Welche Antwort ist am vollständigsten?**
+**Wann musst du dir während der Schicht die Hände waschen?**
 
-- a) Nur vor Arbeitsbeginn.
-- b) Nur nach dem Toilettengang.
-- **c) Vor Arbeitsbeginn, nach Toilettengang, nach Kontakt mit rohen Lebensmitteln, nach Niesen oder Husten. ✅**
-- d) Nur am Ende der Schicht.
+- a) Einmal vor Schichtbeginn und einmal nach dem Mittagessen.
+- **b) Vor Arbeitsbeginn, nach Toilette, nach Rohwarekontakt, nach Niesen. ✅**
+- c) Vor jedem neuen Burger und nach jedem Geldwechsel mit dem Gast.
+- d) Beim Schichtwechsel und immer dann, wenn die Hände sichtbar dreckig sind.
 
-> *BW-Leitfaden S. 13:* Händereinigung vor Arbeitsbeginn, nach jedem
-> Toilettengang, nach Arbeiten mit rohem Fleisch / Fisch / Geflügel / Eiern;
-> zusätzlich nach Husten / Niesen.
+> *BW-Leitfaden S. 13:* Hände waschen vor Arbeitsbeginn, nach jedem
+> Toilettengang, nach Arbeiten mit rohem Fleisch/Fisch/Geflügel/Eiern und
+> nach Husten/Niesen. „Sichtbar dreckig" reicht nicht — es geht um
+> unsichtbare Keime.
 
 ### Frage 2 *(extension, S. 13)*
-**Was gilt am Burger-Stand für Rauchen und Dampfen?**
+**Was gilt am Burger-Stand für Rauchen und E-Zigaretten?**
 
-- **a) Im Lebensmittelbereich nicht erlaubt. ✅**
-- b) Erlaubt, wenn man danach die Hände wäscht.
-- c) Erlaubt in den Pausen am Stand.
-- d) Erlaubt, wenn der Wind in die richtige Richtung weht.
+- a) Erlaubt, wenn man danach gründlich die Hände wäscht.
+- b) Erlaubt in den Pausen, solange man außerhalb des Standes raucht.
+- c) Erlaubt nur für volljährige Helfer und nur abseits der Theke.
+- **d) Im gesamten Lebensmittelbereich grundsätzlich verboten. ✅**
 
 > *BW-Leitfaden S. 13:* „Rauchen und Dampfen ist im Bereich der
-> Lebensmittelherstellung und -behandlung nicht erlaubt."
+> Lebensmittelherstellung und -behandlung nicht erlaubt." Auch Pausen
+> außerhalb sind nur okay, wenn der Rauchbereich klar abseits liegt — am
+> Stand selbst gar nichts.
 
 ### Frage 3 *(extension, S. 13)*
-**Du hast Magen-Darm-Beschwerden. Was tust du?**
+**Du hast seit gestern Durchfall, fühlst dich aber heute schon besser. Was tust du?**
 
-- a) Trotzdem helfen — die Beschwerden sind ja nicht stark.
-- b) Erst die Hände waschen und dann ganz normal weiterarbeiten.
-- **c) Nicht mit Lebensmitteln arbeiten — Magen-Darm-Erkrankungen können über Lebensmittel übertragen werden. ✅**
-- d) Nur in den Verkauf gehen, nicht in die Zubereitung.
+- a) Hände noch gründlicher waschen und nur an die Kasse, nicht in die Zubereitung.
+- b) Mit Einmalhandschuhen weiterarbeiten — die schützen die Lebensmittel.
+- c) Eine Maske aufsetzen und alles ist gut.
+- **d) Nicht mit Lebensmitteln arbeiten, auch nicht im Verkauf oder an der Theke. ✅**
 
-> *BW-Leitfaden S. 13:* Personen mit Magen-Darm-Erkrankungen (auch
-> Salmonellenausscheider) dürfen nicht mit der Herstellung, Be- und
-> Verarbeitung von Lebensmitteln beschäftigt werden.
+> *BW-Leitfaden S. 13:* Personen mit Magen-Darm-Erkrankungen dürfen nicht
+> mit Herstellung, Be- oder Verarbeitung von Lebensmitteln beschäftigt
+> werden — Verkauf und Ausgabe zählen ebenfalls dazu, weil dabei
+> verzehrfertige Speisen berührt werden.
 
 ---
 
 ## Sektion 2 — Verkaufsstand & Ausstattung
 
 ### Frage 4 *(core, S. 5)*
-**Wie muss ein Verkaufsstand für Lebensmittel gestaltet sein?**
+**Wie muss ein Verkaufsstand für Lebensmittel aufgebaut sein?**
 
-- a) Offen, damit die Gäste alles gut sehen können.
-- **b) Überdacht, an drei Seiten geschlossen, mit Spuckschutz an der Vorderseite. ✅**
-- c) Nur überdacht, Wände sind nicht nötig.
-- d) Mit einer Glasvitrine, die rundum offen ist.
+- **a) Überdacht, seitlich/hinten geschlossen, Spuckschutz an der Theke. ✅**
+- b) Vorne offen, hinten ein Sichtschutz für die Helfer.
+- c) Komplett offen, damit Wärme und Gerüche abziehen können.
+- d) Nur überdacht — die Seiten werden durch die Verkaufstische gebildet.
 
-> *BW-Leitfaden S. 5:* Stände sollten überdacht sowie seitlich und rückwärts
-> umschlossen sein; offene Lebensmittel werden an der Vorderseite durch
-> Spuckschutz vor Husten / Niesen geschützt.
+> *BW-Leitfaden S. 5:* Stände sollten überdacht und seitlich/rückwärtig
+> umschlossen sein; offene Lebensmittel an der Vorderseite durch
+> Spuckschutz vor Husten/Niesen schützen. Tische als „Wände" reichen
+> nicht — Staub und Spritzer kämen ungehindert dran.
 
 ### Frage 5 *(extension, S. 10)*
-**Eis, das in Getränke kommt — woraus muss es hergestellt sein?**
+**Welches Wasser darf für Eiswürfel in den Getränken verwendet werden?**
 
-- a) Aus Quellwasser aus dem Brunnen.
-- **b) Aus Trinkwasser. ✅**
-- c) Aus Mineralwasser ohne Kohlensäure.
-- d) Egal, solange es kalt ist.
+- a) Stilles Mineralwasser aus Flaschen, das ist am sichersten.
+- b) Gefiltertes Brunnenwasser — der natürliche Geschmack ist beliebt.
+- c) Abgekochtes Wasser aus dem Wasserkocher, das ist keimfrei.
+- **d) Trinkwasser in Trinkwasserqualität, anderes ist nicht zulässig. ✅**
 
-> *BW-Leitfaden S. 10:* „Eis, das direkt mit Lebensmitteln in Berührung kommt
-> oder in Getränke gegeben wird, muss aus Trinkwasser hergestellt sein."
+> *BW-Leitfaden S. 10:* „Eis, das direkt mit Lebensmitteln in Berührung
+> kommt oder in Getränke gegeben wird, muss aus Trinkwasser hergestellt
+> sein." Mineralwasser oder Brunnenwasser haben andere Anforderungen.
 
 ---
 
@@ -86,219 +99,237 @@ am Stand, Zwei-Becken-Verfahren als Backup.
 ### Frage 6 *(core, S. 9)*
 **Bei welcher Temperatur müssen die tiefgefrorenen Hackfleisch-Patties spätestens gelagert werden?**
 
-- a) −5 °C
-- b) −10 °C
-- **c) −18 °C ✅**
-- d) 0 °C
+- a) Höchstens 0 °C — kalt genug für Fleisch.
+- b) Höchstens −5 °C — der gängige Wert für TK.
+- **c) Höchstens −18 °C — Vorgabe für Tiefkühlware. ✅**
+- d) Höchstens −10 °C — Standard im Haushaltsgefrierer.
 
 > *BW-Leitfaden S. 9, Tabelle 2:* Tiefkühlprodukte werden bei mindestens
-> −18 °C gelagert. Das gilt auch für unsere TK-Hackfleisch-Patties — die
-> bleiben bis zur Verwendung im Gefrierer.
+> −18 °C gelagert — egal ob Industrie- oder Haushaltsgefrierer. Wärmer ist
+> nicht erlaubt.
 
 ### Frage 7 *(extension, S. 9)*
-**Steak und Wurst lagern wir im Kühlschrank. Welche maximale Lagertemperatur gilt laut DIN 10508 / BW-Leitfaden für Frischfleisch und Fleischerzeugnisse?**
+**Frisches Steak und Bratwurst lagern wir im Kühlschrank. Welche maximale Temperatur erlaubt der BW-Leitfaden?**
 
-- a) 4 °C
-- **b) 7 °C ✅**
-- c) 10 °C
-- d) 15 °C
+- a) Höchstens 4 °C — der Wert für Hackfleisch und Geflügel.
+- **b) Höchstens 7 °C — Wert für Frischfleisch und Fleischerzeugnisse. ✅**
+- c) Höchstens 10 °C — wie für allgemeine Kühlware üblich.
+- d) Höchstens 12 °C, wenn das Fleisch noch am gleichen Tag verbraucht wird.
 
-> *BW-Leitfaden S. 9, Tabelle 2:* Frischfleisch und Fleischerzeugnisse höchstens
-> 7 °C. Hackfleisch / Geflügel ist strenger (4 °C), Tiefkühlware noch strenger
-> (−18 °C).
+> *BW-Leitfaden S. 9, Tabelle 2:* Frischfleisch und Fleischerzeugnisse
+> höchstens 7 °C. 4 °C wäre die strengere Stufe für Hackfleisch/Geflügel —
+> fürs Steak nicht erforderlich. 10 °C oder mehr wären zu warm.
 
 ### Frage 8 *(extension, S. 8)*
-**Wie müssen rohe Lebensmittel (Patties, Steak, Wurst) gegenüber verzehrfertigen Lebensmitteln gelagert werden?**
+**Wo lagerst du rohes Fleisch (Patties, Steak, Wurst) gegenüber verzehrfertigen Lebensmitteln?**
 
-- a) Im selben Behälter, damit nichts verloren geht.
-- **b) Getrennt, räumlich oder in verschlossenen Behältnissen. ✅**
-- c) Egal, solange beides kalt ist.
-- d) Verzehrfertiges unten, Rohes oben.
+- a) Im selben Fach — Hauptsache, alles ist gekühlt.
+- b) Rohes ganz oben, Fertiges unten, damit man's beim Greifen unterscheidet.
+- **c) Räumlich getrennt oder in dicht verschlossenen Behältern. ✅**
+- d) Alles zusammen in Folie eingewickelt im gleichen Fach.
 
-> *BW-Leitfaden S. 8:* Rohware muss getrennt von verzehrfertigen Lebensmitteln
-> gelagert werden — räumlich getrennt oder durch geeignete, verschlossene
-> Behälter.
+> *BW-Leitfaden S. 8:* Rohware muss von verzehrfertigen Lebensmitteln
+> getrennt gelagert werden — räumlich oder durch verschlossene Behälter.
+> Die alte Küchenregel „Rohes unten" stimmt für die Tropf-Richtung, ist
+> im BW-Leitfaden aber nicht die Vorgabe — entscheidend ist die saubere
+> Trennung.
 
 ---
 
 ## Sektion 4 — Zubereitung & Kreuzkontamination
 
 ### Frage 9 *(core, S. 10)*
-**Wie müssen unsere Hackfleisch-Patties zubereitet werden?**
+**Wie müssen unsere Burger-Patties (Hackfleisch) zubereitet werden?**
 
-- a) Medium, mit rosa Kern.
-- **b) Vollständig durcherhitzt — keine Abgabe von rohen oder halbgaren Patties. ✅**
-- c) Roh anbieten, der Gast brutzelt sie selbst.
-- d) Nur an der Oberfläche angebraten.
+- a) Außen scharf angebraten, innen leicht rosa — Restaurant-Stil.
+- **b) Vollständig durchgegart, mindestens 70 °C im Kern. ✅**
+- c) Auf Wunsch des Gastes auch „medium" oder „rare".
+- d) Außen kross, innen saftig-rosa wie bei einem guten Steak.
 
-> *BW-Leitfaden S. 10:* Erzeugnisse aus Hackfleisch dürfen auf Vereins- und
-> Straßenfesten nur abgegeben werden, wenn sie vollständig durcherhitzt sind.
-> Salmonellen- und EHEC-Risiko.
+> *BW-Leitfaden S. 10:* Hackfleischerzeugnisse dürfen auf Vereins- und
+> Straßenfesten nur durchgegart abgegeben werden (Kerntemperatur ~70 °C).
+> Im Steak sitzen Bakterien nur an der Oberfläche — im Hackfleisch sind sie
+> überall, weil das Fleisch zerkleinert wurde. „Medium" ist beim Hack nicht
+> zulässig.
 
 ### Frage 10 *(extension, S. 8)*
-**Bei welcher Temperatur sollte die Fritteuse für die Pommes maximal eingestellt werden?**
+**Auf welcher maximalen Temperatur sollte die Pommes-Fritteuse laufen?**
 
-- a) 150 °C
-- **b) 175 °C ✅**
-- c) 200 °C
-- d) 225 °C
+- a) 150 °C — das schont das Frittierfett am längsten.
+- b) 200 °C — Pommes werden so schneller knusprig.
+- **c) 175 °C — Grenze gegen die Bildung von Acrylamid. ✅**
+- d) 220 °C — wie in vielen Schnellrestaurants üblich.
 
 > *BW-Leitfaden S. 8:* Fritteuse auf maximal 175 °C einstellen, um die
-> unerwünschte Acrylamidbildung zu vermeiden.
+> Acrylamidbildung zu reduzieren. Höher knusprigt nicht besser — es
+> entstehen nur mehr gesundheitlich bedenkliche Stoffe.
 
 ### Frage 11 *(extension, S. 10)*
-**Du hast rohe Patties / Steak / Wurst verarbeitet. Was machst du, bevor du das Burger-Brötchen schneidest?**
+**Du hast gerade rohes Fleisch (Patty, Steak, Wurst) geschnitten. Was machst du, bevor du das Burger-Brötchen schneidest?**
 
-- a) Egal — die Hitze beim Braten tötet alles ab.
-- b) Kurz mit dem Geschirrtuch abwischen reicht.
-- **c) Separates Schneidebrett und Messer verwenden bzw. das benutzte vorher gründlich reinigen. ✅**
-- d) Mit kaltem Wasser kurz abspülen.
+- a) Brett und Messer kurz mit kaltem Wasser abspülen.
+- b) Mit dem Küchenkrepp einmal feucht abwischen.
+- c) Egal — die Hitze beim Braten tötet alles ab.
+- **d) Anderes Brett und Messer nehmen oder beides gründlich abwaschen. ✅**
 
-> *BW-Leitfaden S. 10:* Für rohes Fleisch und Geflügel separate Bereiche,
-> Arbeitsgeräte und intakte Schneidebretter; Spülmaschinen zur Reinigung und
-> Bakterienabtötung.
+> *BW-Leitfaden S. 10:* Für rohes Fleisch/Geflügel separate Bereiche,
+> Arbeitsgeräte und Schneidebretter — oder gründliche Reinigung dazwischen.
+> Kaltes Wasser oder ein Wisch reichen nicht; das Brötchen wird ja nicht
+> mehr erhitzt.
 
 ---
 
 ## Sektion 5 — Ausgabe & verzehrfertige Lebensmittel
 
 ### Frage 12 *(core, S. 8)*
-**Du reichst einem Gast den fertigen Burger an. Was ist erlaubt?**
+**Wie reichst du einem Gast den fertigen Burger an?**
 
-- a) Burger-Brötchen mit der bloßen Hand greifen, wenn die Hände sauber sind.
-- **b) Mit Zange, Servietten oder Einmalhandschuhen anfassen — kein direkter Handkontakt. ✅**
-- c) Mit dem Ellbogen schieben.
-- d) Geld und Burger in derselben Bewegung übergeben.
-
-> *BW-Leitfaden S. 8:* Bei verzehrfertigen Lebensmitteln ist hohes
-> Hygieneniveau gefordert; sofern möglich Besteck verwenden, ansonsten
-> sorgfältige Händereinigung.
-
-### Frage 13 *(extension, S. 8)*
-**Wann musst du Einmalhandschuhe wechseln?**
-
-- a) Erst, wenn sie sichtbar kaputt sind.
-- b) Nach einer Stunde Tragezeit, sonst nie.
-- **c) Regelmäßig, spätestens nach Kontakt mit unsauberen Bereichen wie Verpackung, Müll oder Geld. ✅**
-- d) Gar nicht — Einmalhandschuhe ersetzen das Händewaschen.
-
-> *BW-Leitfaden S. 8:* Einmalhandschuhe verschmutzen genauso schnell wie bloße
-> Hände und sind regelmäßig zu wechseln.
-
-### Frage 14 *(extension, S. 8)*
-**Wie gibst du Pommes nach dem Frittieren an den Gast aus?**
-
-- a) Mit der bloßen Hand in die Tüte fallen lassen.
-- **b) Mit Zange oder Schaufel. ✅**
-- c) Aus der Fritteuse direkt in die Hand des Gastes kippen.
-- d) Auf einem Stück Küchenpapier auf der Theke abkühlen lassen und der Gast greift selbst.
+- a) Mit sauberer Hand am Brötchen — kurz reichen, kein Drama.
+- b) Auf Backpapier ablegen, der Gast greift selbst zum Burger.
+- **c) Mit Zange, Servietten oder Einmalhandschuhen — kein direkter Handkontakt. ✅**
+- d) Mit dem Burgerwender direkt vom Rost auf den Pappteller des Gastes.
 
 > *BW-Leitfaden S. 8:* Verzehrfertige Lebensmittel sollten möglichst mit
-> Besteck (Zange, Schaufel, Löffel) angefasst werden — kein bloßer
-> Handkontakt.
+> Besteck angefasst werden. „Saubere Hand" ist kein zuverlässiger Ersatz,
+> weil Keime unsichtbar sind. Backpapier hilft nicht, wenn man trotzdem
+> reingreift.
+
+### Frage 13 *(extension, S. 8)*
+**Wann musst du die Einmalhandschuhe wechseln?**
+
+- a) Wenn sie sichtbar verschmutzt oder beschädigt sind.
+- b) Bei jedem Pausenende und beim Schichtwechsel.
+- **c) Nach Kontakt mit unsauberen Bereichen — Müll, Geld, Verpackungsmaterial. ✅**
+- d) Einmal pro Tag — sonst sind es ja keine „Einmal"-Handschuhe.
+
+> *BW-Leitfaden S. 8:* Einmalhandschuhe verschmutzen genauso schnell wie
+> bloße Hände. Entscheidend ist der Auslöser — Kontakt mit unsauberen
+> Dingen — nicht eine feste Zeitspanne. „Sichtbar verschmutzt" ist zu spät.
+
+### Frage 14 *(extension, S. 8)*
+**Wie gibst du frisch frittierte Pommes an den Gast aus?**
+
+- **a) Mit Schaufel oder Zange direkt in die Tüte portionieren. ✅**
+- b) Aus dem Frittierkorb auf einem Tablett abkühlen lassen, Gast greift selbst.
+- c) Mit dem Korb direkt in die Tüte des Gastes kippen.
+- d) Auf einem Stück Küchenpapier in der Auslage, Gast bedient sich.
+
+> *BW-Leitfaden S. 8:* Verzehrfertige Lebensmittel möglichst mit Besteck
+> (Zange, Schaufel, Löffel) anfassen. „Selbstbedienung" aus der Auslage
+> führt zu Handkontakt durch wechselnde Gäste — das ist gerade nicht
+> erlaubt.
 
 ---
 
 ## Sektion 6 — Getränke & Eis
 
 ### Frage 15 *(core, S. 10)*
-**Wie entnimmst du Eiswürfel für die Cola?**
+**Wie entnimmst du Eiswürfel für eine Cola?**
 
-- a) Mit der bloßen Hand — geht am schnellsten.
-- **b) Mit dem Eisportionierer oder einem sauberen Löffel; nicht mit der Hand. ✅**
-- c) Mit dem Trinkglas selbst.
-- d) Mit einer Serviette greifen.
+- **a) Mit dem sauberen Eisportionierer oder einem dafür reservierten Löffel. ✅**
+- b) Mit dem Glas direkt durchs Eis ziehen — schneller geht's nicht.
+- c) Mit einer sauberen Serviette greifen, das ist hygienisch.
+- d) Mit der Hand, solange Einmalhandschuhe getragen werden.
 
-> *BW-Leitfaden S. 10:* Das Eis soll nicht mit der bloßen Hand berührt werden;
-> saubere Portionier- und Aufbewahrungshilfen verwenden.
+> *BW-Leitfaden S. 10:* Das Eis soll nicht mit der bloßen Hand berührt
+> werden — auch nicht mit Handschuh, weil der ebenso verschmutzt ist wie
+> die Hand. Glas durchs Eis ziehen birgt das Risiko von Glasbruch direkt
+> im Eis.
 
-### Frage 16 *(extension, S. 10)*
-**Wer ist für die Hygiene der Zapfanlage am Stand verantwortlich?**
+### Frage 16 *(extension, S. 5)*
+**Was machst du mit Trinkgläsern oder Bechern, die abgesplittert oder beschädigt sind?**
 
-- a) Nur der Verleiher.
-- b) Niemand — die Zapfanlage reinigt sich selbst.
-- **c) Verleiher und Nutzer (Entleiher) gemeinsam; der Nutzer muss vor Betrieb Reinigung / ggf. Desinfektion sicherstellen. ✅**
-- d) Nur die Brauerei.
+- a) Mit Klebeband flicken und weiter benutzen.
+- **b) Aussortieren und nicht mehr verwenden — Verletzungsgefahr. ✅**
+- c) Nur noch für nicht-alkoholische Getränke verwenden.
+- d) Aufheben und am Saisonende komplett entsorgen.
 
-> *BW-Leitfaden S. 10:* Für die Hygiene der Anlagen sind Verleiher und
-> Entleiher verantwortlich; der Nutzer beschafft die Reinigungsanleitung und
-> reinigt vor Betrieb.
+> *BW-Leitfaden S. 5 + 6:* Beschädigte oder gesplitterte Behältnisse dürfen
+> nicht verwendet werden. Splitter können ins Getränk gelangen und
+> Verletzungen verursachen — kein „weiter mit Klebeband" und auch nicht
+> „nur Cola".
 
 ### Frage 17 *(extension, S. 6)*
-**Welche Anforderung gilt für das Wasser, das wir am Stand für Getränke und zum Reinigen nutzen?**
+**Welche Anforderung gilt für das Wasser am Stand (für Getränke und zum Reinigen)?**
 
-- **a) Es muss Trinkwasserqualität haben. ✅**
-- b) Gartenschlauch-Wasser reicht aus.
-- c) Regenwasser ist auch in Ordnung.
-- d) Beliebiges Leitungswasser, egal welcher Schlauch verwendet wird.
+- **a) Trinkwasserqualität — Gartenschläuche sind nicht zulässig. ✅**
+- b) Mineralwasser aus Flaschen ist verpflichtend.
+- c) Mit Filterkanne aufbereitetes Leitungswasser reicht.
+- d) Klares Brunnenwasser ist erlaubt, wenn es vor Ort geprüft wurde.
 
-> *BW-Leitfaden S. 6:* Wasser für Herstellung, Behandlung und Reinigung muss
-> Trinkwasserqualität haben. Schläuche müssen lebensmittelgeeignet sein
-> (KTW-A / DVGW W270). Gartenschläuche sind nicht zulässig.
+> *BW-Leitfaden S. 6:* Wasser für Herstellung, Behandlung und Reinigung
+> muss Trinkwasserqualität haben. Schläuche müssen lebensmittelgeeignet
+> sein (KTW-A / DVGW W270). Gartenschläuche und Brunnenwasser sind nicht
+> zulässig.
 
 ---
 
 ## Sektion 7 — Reinigung, Abfall & Schädlinge
 
 ### Frage 18 *(core, S. 6)*
-**Am KjG-Stand haben wir eine Spülmaschine. Wenn sie ausfällt oder ein Topf von Hand gespült werden muss, wie funktioniert das richtige Zwei-Becken-Verfahren?**
+**Die Spülmaschine ist kurz ausgefallen — du musst von Hand spülen. Wie funktioniert das richtige Zwei-Becken-Verfahren?**
 
-- a) Ein Becken kaltes Wasser, fertig.
-- **b) Erstes Becken: so heißes Wasser wie möglich mit Spülmittel — zweites Becken: sauberes, warmes Nachspülwasser. ✅**
-- c) Erstes Becken: Nachspülwasser — zweites Becken: Spülmittel.
-- d) Beide Becken nur mit Spülmittel ohne Klarspülen.
+- a) Beide Becken heißes Wasser mit Spülmittel, doppelt hilft doppelt.
+- **b) Becken 1 möglichst heiß mit Spülmittel, Becken 2 sauberes warmes Klarspülwasser. ✅**
+- c) Becken 1 klares Wasser zuerst, Becken 2 dann Spülmittel zum Nachfetten.
+- d) Becken 1 Spülmittel, Becken 2 Desinfektionsmittel für jede Charge.
 
 > *BW-Leitfaden S. 6:* Manuelles Spülen erfolgt in zwei Becken — eines mit
 > heißem Wasser und Spülmittel, eines mit sauberem, warmem Nachspülwasser.
-> Die Spülmaschine ist die erste Wahl, das Zwei-Becken-Verfahren der
-> Backup-Plan.
+> Klarspülwasser zuerst macht keinen Sinn, Desinfektion ist hier nicht
+> vorgeschrieben.
 
 ### Frage 19 *(extension, S. 7)*
-**Wie schützt du Lebensmittel und Stand vor Schädlingen (Insekten, Vögel)?**
+**Wie schützt du Lebensmittel und Stand vor Insekten und Vögeln?**
 
-- **a) Lebensmittel stets abdecken, Müll geschlossen halten, Stand sauber halten. ✅**
-- b) Insektenspray direkt auf die Lebensmittel sprühen.
-- c) Vögel mit der Hand verscheuchen, Reste sind ok.
-- d) Türen offen lassen, damit die Insekten auch wieder rauskommen.
+- a) Mit Insektenspray die Standumgebung am Morgen vorbeugend behandeln.
+- b) Mit Klebefallen direkt neben den Lebensmitteln aufstellen.
+- c) Mit Räucherstäbchen oder Duftkerzen am Stand — Insekten mögen das nicht.
+- **d) Lebensmittel abdecken, Müll geschlossen, Stand sauber und Krümel-frei halten. ✅**
 
-> *KjG-Hygieneplan + BW-Leitfaden S. 7:* Lebensmittel abdecken, Müll
-> geschlossen lagern, Stand sauber halten; Insektizide gehören nicht in den
-> Lebensmittelbereich.
+> *BW-Leitfaden S. 7 + KjG-Hygieneplan:* Lebensmittel abdecken, Müll
+> geschlossen lagern, Stand sauber halten — Hygiene statt Chemie.
+> Insektizide gehören NICHT in den Lebensmittelbereich, Klebefallen erst
+> recht nicht direkt neben Speisen.
 
 ### Frage 20 *(extension, S. 7)*
 **Wie werden Lebensmittelabfälle am Stand entsorgt?**
 
-- a) In die Biotonne — geht am schnellsten.
-- b) In Mehrwegbehälter ohne Deckel, direkt neben den Lebensmitteln.
-- **c) In dicht schließende Müllsammelbehälter, räumlich von Lebensmitteln getrennt; Speiseabfälle nicht in die Biotonne. ✅**
-- d) Auf dem Boden hinter dem Stand sammeln.
+- **a) In dicht schließenden Müllsammelbehältern, getrennt von Lebensmitteln; nicht in die Biotonne. ✅**
+- b) In die normale Biotonne, das ist die klimafreundlichste Lösung.
+- c) In offenen Eimern hinter dem Stand, am Ende einmal komplett geleert.
+- d) Erst sammeln und dann gemeinsam mit den Speiseresten der Gäste in den Restmüll.
 
-> *BW-Leitfaden S. 7:* Lebensmittelabfälle in dicht schließende, ordnungsgemäße
-> Müllsammelbehälter; eine Entsorgung über die Biotonne ist nicht zulässig.
+> *BW-Leitfaden S. 7:* Lebensmittelabfälle gehören in dicht schließende,
+> ordnungsgemäße Müllsammelbehälter, räumlich getrennt von den
+> Lebensmitteln. Eine Entsorgung über die Biotonne ist ausdrücklich NICHT
+> zulässig — auch wenn es nachhaltig klingt.
 
 ---
 
 ## Tabellarische Kurzübersicht
 
-| # | Sektion              | Quelle | Richtige Antwort                                                              |
-|---|----------------------|--------|-------------------------------------------------------------------------------|
-| 1 | Personalhygiene      | S. 13  | c) Vor Arbeitsbeginn, nach Toilette, Rohem, Niesen / Husten                   |
-| 2 | Personalhygiene      | S. 13  | a) Rauchen / Dampfen im Lebensmittelbereich nicht erlaubt                     |
-| 3 | Personalhygiene      | S. 13  | c) Nicht mit Lebensmitteln arbeiten                                            |
-| 4 | Verkaufsstand        | S. 5   | b) Überdacht, 3 Seiten zu, Spuckschutz                                         |
-| 5 | Verkaufsstand        | S. 10  | b) Aus Trinkwasser                                                             |
-| 6 | Lagerung             | S. 9   | c) −18 °C                                                                      |
-| 7 | Lagerung             | S. 9   | b) 7 °C                                                                        |
-| 8 | Lagerung             | S. 8   | b) Getrennt, räumlich oder verschlossen                                        |
-| 9 | Zubereitung          | S. 10  | b) Vollständig durcherhitzt                                                    |
-|10 | Zubereitung          | S. 8   | b) 175 °C                                                                      |
-|11 | Zubereitung          | S. 10  | c) Separate Schneidebretter / Messer                                           |
-|12 | Ausgabe              | S. 8   | b) Mit Zange / Servietten / Handschuhen                                        |
-|13 | Ausgabe              | S. 8   | c) Regelmäßig, spätestens nach unsauberem Kontakt                              |
-|14 | Ausgabe              | S. 8   | b) Mit Zange oder Schaufel                                                     |
-|15 | Getränke             | S. 10  | b) Eisportionierer / sauberer Löffel                                           |
-|16 | Getränke             | S. 10  | c) Verleiher und Nutzer gemeinsam                                              |
-|17 | Getränke             | S. 6   | a) Trinkwasserqualität                                                         |
-|18 | Reinigung            | S. 6   | b) Heiß + Spülmittel / Klarspülwasser                                          |
-|19 | Reinigung            | S. 7   | a) Abdecken, Müll zu, sauber halten                                            |
-|20 | Reinigung            | S. 7   | c) Dichte Müllsammelbehälter, nicht Biotonne                                   |
+| # | Sektion              | Quelle | Richtig | Antwort                                                          |
+|---|----------------------|--------|---------|------------------------------------------------------------------|
+| 1 | Personalhygiene      | S. 13  | b       | Vor Arbeit, nach Toilette, nach Rohem, nach Niesen               |
+| 2 | Personalhygiene      | S. 13  | d       | Im Lebensmittelbereich grundsätzlich verboten                    |
+| 3 | Personalhygiene      | S. 13  | d       | Nicht mit Lebensmitteln arbeiten                                 |
+| 4 | Verkaufsstand        | S. 5   | a       | Überdacht, seitl./hinten zu, Spuckschutz                         |
+| 5 | Verkaufsstand        | S. 10  | d       | Trinkwasserqualität                                              |
+| 6 | Lagerung             | S. 9   | c       | Höchstens −18 °C                                                 |
+| 7 | Lagerung             | S. 9   | b       | Höchstens 7 °C                                                   |
+| 8 | Lagerung             | S. 8   | c       | Räumlich getrennt oder verschlossen                              |
+| 9 | Zubereitung          | S. 10  | b       | Vollständig durchgegart, mind. 70 °C Kern                        |
+|10 | Zubereitung          | S. 8   | c       | 175 °C — gegen Acrylamid                                         |
+|11 | Zubereitung          | S. 10  | d       | Separates Brett oder gründlich abwaschen                         |
+|12 | Ausgabe              | S. 8   | c       | Mit Zange / Servietten / Handschuhen                             |
+|13 | Ausgabe              | S. 8   | c       | Nach Kontakt mit unsauberen Bereichen                            |
+|14 | Ausgabe              | S. 8   | a       | Mit Schaufel oder Zange portionieren                             |
+|15 | Getränke             | S. 10  | a       | Eisportionierer / sauberer Löffel                                |
+|16 | Getränke             | S. 5   | b       | Beschädigte Gläser aussortieren                                  |
+|17 | Getränke             | S. 6   | a       | Trinkwasserqualität                                              |
+|18 | Reinigung            | S. 6   | b       | Heiß+Spülmittel / Klarspülwasser                                 |
+|19 | Reinigung            | S. 7   | d       | Abdecken, Müll zu, sauber halten                                 |
+|20 | Reinigung            | S. 7   | a       | Dichte Müllsammelbehälter, nicht Biotonne                        |
+
+**Verteilung der richtigen Position:** 5×a + 5×b + 5×c + 5×d = 20 ✓

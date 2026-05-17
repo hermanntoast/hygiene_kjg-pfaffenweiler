@@ -230,18 +230,15 @@ const getraenke: Topic = {
   id: 6,
   slug: 'getraenke',
   title: 'Getränke & Eis',
-  subtitle: 'Saubere Becher, Zapfanlagen reinigen, Eis nie mit Hand.',
+  subtitle: 'Saubere Becher, sortierte Gläser, Eis nie mit Hand.',
   sources: [10],
   summary: `
 ### Gläser und Mehrwegbecher
-- Saubere Behältnisse verwenden, beschädigte aussortieren.
-- Mehrweg gründlich spülen (siehe Sektion „Reinigung": Zwei-Becken-Verfahren).
-
-### Zapfanlagen
-- Vor der Veranstaltung gemäß Hersteller / Verleiher **reinigen, ggf. desinfizieren**.
-- Während des Betriebs sauber halten, regelmäßig Tropfschalen leeren.
-- Betriebssicherheit (Prüfpflicht) liegt beim Verleiher, Hygiene-Verantwortung
-  beim Nutzer.
+- Saubere Behältnisse verwenden.
+- **Beschädigte oder gesplitterte Gläser/Becher konsequent aussortieren** —
+  Splitter können ins Getränk gelangen.
+- Mehrweg gründlich spülen (siehe Sektion „Reinigung": Spülmaschine bzw.
+  Zwei-Becken-Verfahren).
 
 ### Eis im Getränk
 - Eis, das Getränke berührt, muss aus **Trinkwasser** hergestellt sein.
