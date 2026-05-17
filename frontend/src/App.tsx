@@ -18,19 +18,68 @@ interface User {
   email?: string;
 }
 
+const PROFILE_KEY = 'kjg.userProfile';
+
+function loadProfile(): User | null {
+  if (typeof localStorage === 'undefined') return null;
+  try {
+    const raw = localStorage.getItem(PROFILE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as Partial<User>;
+    if (
+      typeof parsed.firstName === 'string' &&
+      typeof parsed.lastName === 'string' &&
+      parsed.firstName.trim() &&
+      parsed.lastName.trim()
+    ) {
+      return {
+        firstName: parsed.firstName,
+        lastName: parsed.lastName,
+        email: typeof parsed.email === 'string' ? parsed.email : undefined,
+      };
+    }
+  } catch {
+    // ignore — clear bad entry
+    try {
+      localStorage.removeItem(PROFILE_KEY);
+    } catch {
+      /* noop */
+    }
+  }
+  return null;
+}
+
+function saveProfile(user: User | null): void {
+  if (typeof localStorage === 'undefined') return;
+  try {
+    if (user) {
+      localStorage.setItem(PROFILE_KEY, JSON.stringify(user));
+    } else {
+      localStorage.removeItem(PROFILE_KEY);
+    }
+  } catch {
+    /* noop */
+  }
+}
+
 export default function App() {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUserState] = useState<User | null>(loadProfile);
   const [session, setSession] = useState<QuizStartResponse | null>(null);
   const [result, setResult] = useState<QuizSubmitResponse | null>(null);
   const [pickedQuestions, setPickedQuestions] = useState<QuestionPublic[] | null>(
     null,
   );
 
+  const setUser = (u: User | null) => {
+    setUserState(u);
+    saveProfile(u);
+  };
+
   function reset() {
-    setUser(null);
     setSession(null);
     setResult(null);
     setPickedQuestions(null);
+    // Wichtig: Name/E-Mail NICHT zurücksetzen — bleibt im localStorage.
   }
 
   return (

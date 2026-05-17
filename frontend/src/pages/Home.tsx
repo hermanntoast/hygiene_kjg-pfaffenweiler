@@ -9,7 +9,7 @@ export function Home() {
         <img
           src="/kjg-logo-white.png"
           alt="KjG Pfaffenweiler"
-          className="h-14 w-auto self-start opacity-95"
+          className="h-11 w-auto self-start opacity-95"
         />
         <div className="ob-eyebrow">Hygiene-Schulung</div>
         <h1 className="ob-title">Bevor's losgeht.</h1>
@@ -33,7 +33,7 @@ export function Home() {
           </div>
         </div>
       </div>
-      <div className="cta-wrap cta-wrap-dark relative z-[1]">
+      <div className="cta-wrap cta-wrap-dark">
         <Link to="/start" className="btn btn-primary btn-block">
           Los geht&apos;s
           <Icon name="ArrowRight" size={20} />
