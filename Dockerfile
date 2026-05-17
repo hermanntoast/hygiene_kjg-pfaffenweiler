@@ -35,8 +35,8 @@ WORKDIR /app
 ENV NODE_ENV=production
 ENV PORT=3000
 
-# Nur das Noetigste fuer den Runtime.
-RUN apk add --no-cache tini
+# tini = saubere Signalweiterleitung; su-exec = privilege drop nach chown.
+RUN apk add --no-cache tini su-exec
 
 COPY --from=backend-build /build/backend/node_modules ./node_modules
 COPY --from=backend-build /build/backend/src ./src
@@ -44,10 +44,13 @@ COPY --from=backend-build /build/backend/package.json ./package.json
 COPY --from=backend-build /build/backend/tsconfig.json ./tsconfig.json
 COPY --from=backend-build /build/backend/public ./public
 
+COPY backend/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
 RUN mkdir -p /app/data && chown -R node:node /app/data
 
-USER node
-
+# Wir starten als root, der Entrypoint setzt /app/data-Permissions und dropped
+# danach auf den node-User (UID 1000) per su-exec.
 EXPOSE 3000
-ENTRYPOINT ["/sbin/tini", "--"]
+ENTRYPOINT ["/sbin/tini", "--", "/usr/local/bin/docker-entrypoint.sh"]
 CMD ["npx", "tsx", "src/server.ts"]
