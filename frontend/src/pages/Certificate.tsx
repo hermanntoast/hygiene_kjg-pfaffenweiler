@@ -115,25 +115,7 @@ export function Certificate({ user, result, onReset }: Props) {
             </div>
           </div>
 
-          <div
-            className="cert-sign"
-            style={{
-              marginTop: 18,
-              maxWidth: 220,
-              marginInline: 'auto',
-              textAlign: 'center',
-            }}
-          >
-            <div
-              className="cert-sign-line cert-sign-line--filled"
-              style={{ justifyContent: 'center' }}
-            >
-              F. Straub
-            </div>
-            <div className="cert-sign-label">Hygiene-Verantwortlicher</div>
-          </div>
-
-          {/* Footer: zentrierter Meta-Block links vom QR */}
+          {/* Footer: Meta-Block links vom QR */}
           <div
             style={{
               marginTop: 28,

@@ -348,38 +348,7 @@ export async function generateCertificate(
   drawStat(statsX + statsW / 4, 'QUIZ-ERGEBNIS', `${input.correctCount} / ${input.totalCount}`);
   drawStat(statsX + (3 * statsW) / 4, 'DATUM', formatGermanDate(input.issuedAt));
 
-  // ===== Signaturzeile (zentriert, nur Hygiene-Verantwortlicher) =====
-  const sigW = 200;
-  const sigY = statsY - 70;
-  const sigLineY = sigY + 14;
-  const sigX = (PAGE_W - sigW) / 2;
-  const sigName = 'F. Straub';
-  const sigNameSize = 18;
-  const sigNameW = helvOblique.widthOfTextAtSize(sigName, sigNameSize);
-  page.drawText(sigName, {
-    x: sigX + (sigW - sigNameW) / 2,
-    y: sigLineY + 4,
-    size: sigNameSize,
-    font: helvOblique,
-    color: COL_SLATE_900,
-  });
-  page.drawLine({
-    start: { x: sigX, y: sigLineY },
-    end: { x: sigX + sigW, y: sigLineY },
-    thickness: 0.8,
-    color: COL_SLATE_500,
-  });
-  const sigLabel = 'Hygiene-Verantwortlicher';
-  const sigLabelW = helv.widthOfTextAtSize(sigLabel, 9);
-  page.drawText(sigLabel, {
-    x: sigX + (sigW - sigLabelW) / 2,
-    y: sigY,
-    size: 9,
-    font: helv,
-    color: COL_SLATE_500,
-  });
-
-  // ===== Footer: zentrierter Meta-Block + QR unten rechts =====
+  // ===== Footer: Meta-Block links + QR unten rechts =====
   const footerY = 60;
   const footerInset = inset + 18;
 
