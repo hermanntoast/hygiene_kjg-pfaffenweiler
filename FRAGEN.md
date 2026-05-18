@@ -266,18 +266,19 @@ am Stand, Zwei-Becken-Verfahren als Backup.
 
 ## Sektion 7 — Reinigung, Abfall & Schädlinge
 
-### Frage 18 *(core, S. 6)*
-**Die Spülmaschine ist kurz ausgefallen — du musst von Hand spülen. Wie funktioniert das richtige Zwei-Becken-Verfahren?**
+### Frage 18 *(core, S. 5)*
+**Welcher Reinigungsrhythmus gilt am Stand für Arbeitsflächen, Schneidebretter und Griffe?**
 
-- a) Beide Becken heißes Wasser mit Spülmittel, doppelt hilft doppelt.
-- **b) Becken 1 möglichst heiß mit Spülmittel, Becken 2 sauberes warmes Klarspülwasser. ✅**
-- c) Becken 1 klares Wasser zuerst, Becken 2 dann Spülmittel zum Nachfetten.
-- d) Becken 1 Spülmittel, Becken 2 Desinfektionsmittel für jede Charge.
+- a) Einmal vor Eröffnung und einmal am Abend reicht aus.
+- **b) Vor Beginn wischen, während des Betriebs zwischendurch, am Ende gründlich. ✅**
+- c) Nur wenn Flächen sichtbar verschmutzt sind oder Gäste sich beschweren.
+- d) Alle vier Stunden nach festem Zeitplan — der Anlass spielt keine Rolle.
 
-> *BW-Leitfaden S. 6:* Manuelles Spülen erfolgt in zwei Becken — eines mit
-> heißem Wasser und Spülmittel, eines mit sauberem, warmem Nachspülwasser.
-> Klarspülwasser zuerst macht keinen Sinn, Desinfektion ist hier nicht
-> vorgeschrieben.
+> *BW-Leitfaden S. 5 + KjG-Hygieneplan:* Reinigung in drei Phasen —
+> vor Beginn (Anfangsreinigung), während des Betriebs (Zwischenreinigung
+> von Brettern, Messern, Flächen) und nach Schluss (Schlussreinigung).
+> Nur „wenn sichtbar dreckig" ist zu lasch, ein fester 4-Stunden-Takt
+> ohne Anlass ergibt keinen Sinn.
 
 ### Frage 19 *(extension, S. 7)*
 **Wie schützt du Lebensmittel und Stand vor Insekten und Vögeln?**
@@ -328,7 +329,7 @@ am Stand, Zwei-Becken-Verfahren als Backup.
 |15 | Getränke             | S. 10  | a       | Eisportionierer / sauberer Löffel                                |
 |16 | Getränke             | S. 5   | b       | Beschädigte Gläser aussortieren                                  |
 |17 | Getränke             | S. 6   | a       | Trinkwasserqualität                                              |
-|18 | Reinigung            | S. 6   | b       | Heiß+Spülmittel / Klarspülwasser                                 |
+|18 | Reinigung            | S. 5   | b       | Vor Beginn / während Betrieb / nach Schluss                      |
 |19 | Reinigung            | S. 7   | d       | Abdecken, Müll zu, sauber halten                                 |
 |20 | Reinigung            | S. 7   | a       | Dichte Müllsammelbehälter, nicht Biotonne                        |
 

@@ -364,17 +364,17 @@ export const questions: Question[] = [
     id: 18,
     sectionId: 7,
     quality: 'core',
-    text: 'Die Spülmaschine ist kurz ausgefallen — du musst von Hand spülen. Wie funktioniert das richtige Zwei-Becken-Verfahren?',
+    text: 'Welcher Reinigungsrhythmus gilt am Stand für Arbeitsflächen, Schneidebretter und Griffe?',
     options: [
-      'Beide Becken heißes Wasser mit Spülmittel, doppelt hilft doppelt.',
-      'Becken 1 möglichst heiß mit Spülmittel, Becken 2 sauberes warmes Klarspülwasser.',
-      'Becken 1 klares Wasser zuerst, Becken 2 dann Spülmittel zum Nachfetten.',
-      'Becken 1 Spülmittel, Becken 2 Desinfektionsmittel für jede Charge.',
+      'Einmal vor Eröffnung und einmal am Abend reicht aus.',
+      'Vor Beginn wischen, während des Betriebs zwischendurch, am Ende gründlich.',
+      'Nur wenn Flächen sichtbar verschmutzt sind oder Gäste sich beschweren.',
+      'Alle vier Stunden nach festem Zeitplan — der Anlass spielt keine Rolle.',
     ],
     correctIndex: 1,
-    sourcePage: '6',
+    sourcePage: '5',
     explanation:
-      'BW-Leitfaden S. 6: Manuelles Spülen erfolgt in zwei Becken — eines mit heißem Wasser und Spülmittel, eines mit sauberem, warmem Nachspülwasser. Klarspülwasser zuerst macht keinen Sinn, Desinfektion ist hier nicht vorgeschrieben.',
+      'BW-Leitfaden S. 5 + KjG-Hygieneplan: Reinigung in drei Phasen — vor Beginn (Anfangsreinigung), während des Betriebs (Zwischenreinigung von Brettern, Messern, Flächen) und nach Schluss (Schlussreinigung). Nur "wenn sichtbar dreckig" ist zu lasch, ein fester 4-Stunden-Takt ohne Anlass ergibt keinen Sinn.',
   },
   {
     // REVIEW: Florian
