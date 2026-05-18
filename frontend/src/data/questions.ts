@@ -152,17 +152,17 @@ export const questions: Question[] = [
     id: 6,
     sectionId: 3,
     quality: 'core',
-    text: 'Bei welcher Temperatur müssen die tiefgefrorenen Hackfleisch-Patties spätestens gelagert werden?',
+    text: 'Welche maximale Lagertemperatur gilt für die tiefgefrorenen Hackfleisch-Patties?',
     options: [
-      'Höchstens 0 °C — kalt genug für Fleisch.',
-      'Höchstens −5 °C — der gängige Wert für TK.',
-      'Höchstens −18 °C — Vorgabe für Tiefkühlware.',
-      'Höchstens −10 °C — Standard im Haushaltsgefrierer.',
+      '0 °C — kalt genug für Fleisch.',
+      '−5 °C — der gängige Wert für TK.',
+      '−18 °C — Vorgabe für Tiefkühlware.',
+      '−10 °C — Standard im Haushaltsgefrierer.',
     ],
     correctIndex: 2,
     sourcePage: '9',
     explanation:
-      'BW-Leitfaden S. 9, Tabelle 2: Tiefkühlprodukte werden bei mindestens −18 °C gelagert — egal ob Industrie- oder Haushaltsgefrierer. Wärmer ist nicht erlaubt.',
+      'BW-Leitfaden S. 9, Tabelle 2: Tiefkühlprodukte werden bei höchstens −18 °C gelagert — egal ob Industrie- oder Haushaltsgefrierer. Wärmer ist nicht erlaubt.',
   },
   {
     // REVIEW: Florian
